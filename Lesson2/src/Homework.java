@@ -16,9 +16,9 @@ public class Homework {
      * 2. (optional) if sum of a and b is more then int can store -- return -1;
      **/
     public static int sum(int a, int b) {
-        long t = (long)a+(long)b;
-        if ((long)(a+b) != t) return -1;
-        else return a+b;
+        long t = (long) a + (long) b;
+        if ((a + b) != t) return -1;
+        else return a + b;
     }
 
     /**
@@ -36,7 +36,7 @@ public class Homework {
      * Method should return 10
      */
     public static int max(int a, int b) {
-        return Math.max(a,b);
+        return Math.max(a, b);
     }
 
     /**
@@ -48,7 +48,7 @@ public class Homework {
      */
     public static double average(int[] array) {
         double t = 0.;
-        for (int i = 0; i < array.length;i++)
+        for (int i = 0; i < array.length; i++)
             t = t + array[i];
         return t / array.length;
     }
@@ -59,7 +59,7 @@ public class Homework {
      **/
     public static int max(int[] array) {
         int t = 0;
-        for (int i = 0; i < array.length;i++)
+        for (int i = 0; i < array.length; i++)
             if (array[i] > t) t = array[i];
         return t;
     }
@@ -84,6 +84,6 @@ public class Homework {
         Scanner scanner = new Scanner(System.in);
         int a = (int) Math.pow(scanner.nextInt(), 2);
         int b = (int) Math.pow(scanner.nextInt(), 2);
-        return Math.sqrt(a+b);
+        return Math.sqrt(a + b);
     }
 }
