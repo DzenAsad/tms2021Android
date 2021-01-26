@@ -80,7 +80,7 @@ public class Homework {
         int height = scanner.nextInt();
         int width = scanner.nextInt();
 
-        String[][] array = new String[height][width];
+        char[][] array = new char[height][width];
 
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
@@ -112,15 +112,15 @@ public class Homework {
 
     }
 
-    public static String symbol(int number) {
-        int[] chekNumbs = {7, 3};
-        String[] outString = {"-", "+"};
+    public static char symbol(int number) {
+        int[] chekNumbs = {3, 7};
+        char[] outString = {'+', '-'};
 
         for (int i = 0; i < chekNumbs.length; i++) {
             if (number % chekNumbs[i] == 0) {
                 return outString[i];
             }
         }
-        return "*";
+        return '*';
     }
 }
