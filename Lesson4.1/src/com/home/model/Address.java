@@ -29,4 +29,14 @@ public class Address {
     public String toString() {
         return country + ", " + city;
     }
+
+    public static Address createAddress(String string) {
+        String[] data = string.split(" ");
+        try {
+            return new Address(data[0], data[1]);
+        } catch (Exception e) {
+            System.out.println("Wrong input!");
+            return new Address("null", "null");
+        }
+    }
 }
