@@ -18,7 +18,9 @@ public class RecruitingOffice {
         List<Person> registeredPersons = this.personRegistry.getPeople(address);
         System.out.println("Recruited people");
         for (Person person : registeredPersons) {
-            System.out.println(person.getName() + " " + person.getAge() + " " + person.getGender());
+            if (person.getAge() < 27 && person.getAge() > 18 && person.getGender() == 'M') {
+                System.out.println(person.getName() + " " + person.getAge() + " " + person.getGender());
+            }
         }
     }
 
