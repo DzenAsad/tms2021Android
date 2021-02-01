@@ -43,8 +43,8 @@ public class Menu {
                 return;
             }
             if (selectedNum == 4 && address != null && personRegistry != null) {
-                RecruitingOffice recruitingOffice = new RecruitingOffice(personRegistry, address);
-                recruitingOffice.showPeople();
+                RecruitingOffice recruitingOffice = new RecruitingOffice(personRegistry);
+                recruitingOffice.showPeople(address);
                 submenu = 0;
                 outputMenu("Start");
                 return;
