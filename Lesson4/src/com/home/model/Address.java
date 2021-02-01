@@ -1,6 +1,6 @@
 package com.home.model;
 
-public class Address {
+public class Address implements Model {
     private String country;
     private String city;
 
@@ -30,13 +30,5 @@ public class Address {
         return country + ", " + city;
     }
 
-    public static Address createAddress(String string) {
-        String[] data = string.split(" ");
-        try {
-            return new Address(data[0], data[1]);
-        } catch (Exception e) {
-            System.out.println("Wrong input!");
-            return new Address("null", "null");
-        }
-    }
+
 }

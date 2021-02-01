@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-public class Person {
+public class Person implements Model {
     private Address address;
     private char gender;
     private int age;
@@ -86,30 +86,4 @@ public class Person {
         this.gender = gender;
     }
 
-    //Method for create Person from the string
-    public static Person createPerson(String string) {
-        try {
-            String[] data = string.split(" ");
-            Person person = new Person(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]), data[3].toCharArray()[0]);
-            Address address = new Address(data[4], data[5]);
-            person.setAddress(address);
-            return person;
-
-        } catch (Exception e) {
-            System.out.println("Wrong input!");
-            Person person = new Person(0, "null", 0, 'u');
-            Address address = new Address("null", "null");
-            person.setAddress(address);
-            return person;
-        }
-    }
-
-    public static Person[] getArrayPersons(MyReader myReader) throws IOException {
-        List<String> person = myReader.someRead();
-        Person[] array = new Person[person.size()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = createPerson(person.get(i));
-        }
-        return array;
-    }
 }
