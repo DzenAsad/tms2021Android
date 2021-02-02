@@ -5,8 +5,8 @@ import java.util.Random;
 public class Pc {
     private boolean canWork = true;
     private final Processor processor = new Processor();
-    private final RAM ram = new RAM();
-    private final HDD hdd = new HDD();
+    private final RAM ram = new RAM(5);
+    private final HDD hdd = new HDD(5);
     private int countOn = 0;
     private int countOff = 0;
     private boolean statusWork = false;
@@ -71,7 +71,7 @@ public class Pc {
     }
 
     class Processor {
-        int durability = 1;
+        int durability = 5;
 
         boolean durabilityTest(int count) {
             if (durability <= count) {
@@ -84,8 +84,11 @@ public class Pc {
     }
 
     class RAM {
-        int durability = 1;
+        int durability;
 
+        RAM(int durability){
+           this.durability = durability;
+        }
         boolean durabilityTest(int count) {
             if (durability <= count) {
                 System.out.println("/RAM broken");
@@ -97,8 +100,11 @@ public class Pc {
     }
 
     class HDD {
-        int durability = 1;
+        int durability;
 
+        HDD(int durability){
+            this.durability = durability;
+        }
         boolean durabilityTest(int count) {
             if (durability <= count) {
                 System.out.println("/HDD broken");
