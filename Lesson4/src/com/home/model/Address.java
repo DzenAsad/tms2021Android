@@ -1,5 +1,7 @@
 package com.home.model;
 
+import java.util.Objects;
+
 public class Address implements Model {
     private String country;
     private String city;
@@ -30,5 +32,16 @@ public class Address implements Model {
         return country + ", " + city;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return country.equals(address.country) && city.equals(address.city);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(country, city);
+    }
 }

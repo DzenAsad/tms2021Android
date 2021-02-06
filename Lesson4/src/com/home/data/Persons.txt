@@ -1,3 +1,10 @@
 22 Gleb 190 M Belarus Minsk
-29 Test 199 W Polyak Krakov
-29 Test 199 W Belarus Minsk
+22 Gleb 190 M Belarus Minsk
+29 Test 199 M Polyak Krakov
+29 Test 199 M Belarus Minsk
+22 Misha 190 M Belarus Minsk
+23 Grisha 199 M Polyak Krakov
+24 Petya 199 M Belarus Minsk
+22 Gleb 190 M Belarus Minsk
+29 Test 199 M Polyak Krakov
+29 Test 199 M Belarus Minsk
