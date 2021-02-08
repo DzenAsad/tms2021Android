@@ -45,7 +45,7 @@ public class Menu {
                 return;
             }
             if (selectedNum == 4 && address != null && personRegistry != null) {
-                RecruitingOffice recruitingOffice = (RecruitingOffice) fabric.getModel("RecruitingOffice", personRegistry, myReader);
+                RecruitingOffice recruitingOffice = (RecruitingOffice) fabric.getModelRecruitingOffice(personRegistry, myReader);
                 System.out.println("Recruited people");
                 //Cycle get List<Persons> and show info
                 for (Person person : recruitingOffice.getPeople(address)) {

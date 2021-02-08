@@ -80,27 +80,23 @@ public class Fabric {
         return null;
     }
 
-    public Model getModel(String requestedModel, PersonRegistry personRegistry, MyReader myReader) throws IOException {
-        switch (requestedModel) {
-            case "RecruitingOffice" -> {
-                System.out.println("-Please input String like: \"unit_range name\"-");
-                return new RecruitingOffice(personRegistry, getModelList("MilitaryUnit", myReader));
-            }
-        }
-        return null;
+    public Model getModelRecruitingOffice(PersonRegistry personRegistry, MyReader myReader) throws IOException {
+
+        System.out.println("-Please input String like: \"unit_range name\"-");
+        return new RecruitingOffice(personRegistry, getModelListMilitaryUnit(myReader));
+
+
     }
 
-    public List<MilitaryUnit> getModelList(String requestedModel, MyReader myReader) throws IOException {
-        switch (requestedModel) {
-            case "MilitaryUnit" -> {
-                List<String> militaryUnit = myReader.someRead();
-                List<MilitaryUnit> array = new LinkedList<>();
-                for (String s : militaryUnit) {
-                    array.add((MilitaryUnit) getModel("MilitaryUnit", s));
-                }
-                return array;
-            }
+    public List<MilitaryUnit> getModelListMilitaryUnit(MyReader myReader) throws IOException {
+
+        List<String> militaryUnit = myReader.someRead();
+        List<MilitaryUnit> array = new LinkedList<>();
+        for (String s : militaryUnit) {
+            array.add((MilitaryUnit) getModel("MilitaryUnit", s));
         }
-        return null;
+        return array;
+
+
     }
 }

@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MilitaryUnit implements Model {
-    String name;
-    int limit;
-    List<Person> personSet = new LinkedList<>();
+    private String name;
+    private int limit;
+    private List<Person> personSet = new LinkedList<>();
 
     MilitaryUnit(int limit, String name)  {
         this.name = name;
