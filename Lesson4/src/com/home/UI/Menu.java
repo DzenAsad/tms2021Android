@@ -4,6 +4,7 @@ import com.home.PersonRegistry;
 import com.home.RecruitingOffice;
 import com.home.model.Address;
 import com.home.model.Fabric;
+import com.home.model.Person;
 
 import java.io.IOException;
 
@@ -26,6 +27,7 @@ public class Menu {
 
         //Main menu
         if (submenu == 0) {
+            MyReader myReader = new ConsoleMyReader();
             if (selectedNum == 1) {
                 submenu = 1;
                 outputMenu("readConsole");
@@ -43,8 +45,13 @@ public class Menu {
                 return;
             }
             if (selectedNum == 4 && address != null && personRegistry != null) {
-                RecruitingOffice recruitingOffice = new RecruitingOffice(personRegistry);
-                recruitingOffice.showPeople(address);
+                RecruitingOffice recruitingOffice = (RecruitingOffice) fabric.getModelRecruitingOffice(personRegistry, myReader);
+                System.out.println("Recruited people");
+                //Cycle get List<Persons> and show info
+                for (Person person : recruitingOffice.getPeople(address)) {
+                    System.out.println(person.getName() + " " + person.getAge() + " " + person.getGender());
+                }
+                recruitingOffice.loadUnits(address); //load units
                 submenu = 0;
                 outputMenu("Start");
                 return;

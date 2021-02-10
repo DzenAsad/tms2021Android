@@ -4,6 +4,7 @@ import com.home.UI.MyReader;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class Person implements Model {
@@ -86,4 +87,16 @@ public class Person implements Model {
         this.gender = gender;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return gender == person.gender && age == person.age && height == person.height && address.equals(person.address) && name.equals(person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(address, gender, age, name, height);
+    }
 }
