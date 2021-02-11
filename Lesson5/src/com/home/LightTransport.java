@@ -35,7 +35,9 @@ public class LightTransport extends TerraneousTransoprt {
     }
 
     public void doSomeInfo(int time) {
-        System.out.println("За время " + time + "ч, автомобиль " + getBrand() + " двигаясь с максимальной скоростью " + getMaxSpeed() + "км/ч проедет " + rangeOverTime(time) + " км и израсходует " + fuelOverRange(rangeOverTime(time)) + " литров топлива.");
+        System.out.println("За время " + time + "ч, автомобиль " + getBrand()
+                + " двигаясь с максимальной скоростью " + getMaxSpeed() + "км/ч проедет " + rangeOverTime(time)
+                + " км и израсходует " + fuelOverRange(rangeOverTime(time)) + " литров топлива.");
     }
 
     private int rangeOverTime(int hours) {
