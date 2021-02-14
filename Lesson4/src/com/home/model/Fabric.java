@@ -1,9 +1,11 @@
 package com.home.model;
 
 import com.home.PersonRegistry;
+import com.home.RecruitingOffice;
 import com.home.UI.MyReader;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Fabric {
@@ -15,12 +17,11 @@ public class Fabric {
                     return new Address(formattedData[0], formattedData[1]);
                 } catch (Exception e) {
                     System.out.println("Wrong input!");
-                    return new Address("null", "null");
                 }
             }
             case "Person" -> {
+                String[] formattedData = data.split(" ");
                 try {
-                    String[] formattedData = data.split(" ");
                     Person person = new Person(Integer.parseInt(formattedData[0]), formattedData[1], Integer.parseInt(formattedData[2]), formattedData[3].toCharArray()[0]);
                     Address address = new Address(formattedData[4], formattedData[5]);
                     person.setAddress(address);
@@ -28,10 +29,14 @@ public class Fabric {
 
                 } catch (Exception e) {
                     System.out.println("Wrong input!");
-                    Person person = new Person(0, "null", 0, 'u');
-                    Address address = new Address("null", "null");
-                    person.setAddress(address);
-                    return person;
+                }
+            }
+            case "MilitaryUnit" -> {
+                String[] formattedData = data.split(" ");
+                try {
+                    return new MilitaryUnit(Integer.parseInt(formattedData[0]), formattedData[1]);
+                } catch (Exception e) {
+                    System.out.println("Wrong input!");
                 }
             }
         }
@@ -48,6 +53,14 @@ public class Fabric {
                 }
                 return array;
             }
+            case "MilitaryUnit" -> {
+                List<String> militaryUnit = myReader.someRead();
+                MilitaryUnit[] array = new MilitaryUnit[militaryUnit.size()];
+                for (int i = 0; i < array.length; i++) {
+                    array[i] = (MilitaryUnit) getModel("MilitaryUnit", militaryUnit.get(i));
+                }
+                return array;
+            }
         }
         return null;
     }
@@ -61,9 +74,29 @@ public class Fabric {
             }
             case "Address" -> {
                 System.out.println("-Please input String like: \"country city\"-");
-                return (Address) getModel("Address", myReader.someRead().get(0));
+                return getModel("Address", myReader.someRead().get(0));
             }
         }
         return null;
+    }
+
+    public Model getModelRecruitingOffice(PersonRegistry personRegistry, MyReader myReader) throws IOException {
+
+        System.out.println("-Please input String like: \"unit_range name\"-");
+        return new RecruitingOffice(personRegistry, getModelListMilitaryUnit(myReader));
+
+
+    }
+
+    public List<MilitaryUnit> getModelListMilitaryUnit(MyReader myReader) throws IOException {
+
+        List<String> militaryUnit = myReader.someRead();
+        List<MilitaryUnit> array = new LinkedList<>();
+        for (String s : militaryUnit) {
+            array.add((MilitaryUnit) getModel("MilitaryUnit", s));
+        }
+        return array;
+
+
     }
 }
