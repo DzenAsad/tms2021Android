@@ -4,7 +4,7 @@ import by.teachmeskills.robot.hands.IHand;
 import by.teachmeskills.robot.heads.IHead;
 import by.teachmeskills.robot.legs.ILeg;
 
-public class Robot implements IRobot, MostExpensiveRobot {
+public class Robot implements IRobot {
     private IHead head;
     private IHand hand;
     private ILeg leg;
@@ -15,7 +15,8 @@ public class Robot implements IRobot, MostExpensiveRobot {
         this.leg = leg;
     }
 
-    public Robot(){}
+    public Robot() {
+    }
 
     public IHead getHead() {
         return head;
@@ -50,6 +51,7 @@ public class Robot implements IRobot, MostExpensiveRobot {
 
     /**
      * Get the cost of a robot
+     *
      * @return int
      */
     @Override
@@ -57,7 +59,6 @@ public class Robot implements IRobot, MostExpensiveRobot {
         int price = head.getPrice() + hand.getPrice() + leg.getPrice();
         return price;
     }
-
 
 
 }

@@ -1,11 +1,11 @@
 package by.teachmeskills.robot.fabric.leg;
 
-import by.teachmeskills.robot.fabric.SomeFabric;
+import by.teachmeskills.robot.fabric.Fabric;
 import by.teachmeskills.robot.legs.*;
 
 import java.util.Random;
 
-public class LegsFabric implements SomeFabric<ILeg> {
+public class RandomLegsFabric implements Fabric<ILeg> {
     @Override
     public ILeg buildSomething() {
         Random random = new Random();

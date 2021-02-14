@@ -1,8 +1,7 @@
 package by.teachmeskills.robot.fabric;
 
 
-
-public interface SomeFabric<T> {
+public interface Fabric<T> {
 
     //Build robot method
     T buildSomething();

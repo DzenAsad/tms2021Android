@@ -1,6 +1,6 @@
 package by.teachmeskills.robot.legs;
 
-public class ToshibaLeg implements ILeg{
+public class ToshibaLeg implements ILeg {
     private int price;
 
     public ToshibaLeg(int price) {

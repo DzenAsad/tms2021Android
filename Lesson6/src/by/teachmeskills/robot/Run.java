@@ -1,10 +1,10 @@
 package by.teachmeskills.robot;
 
-import by.teachmeskills.robot.fabric.RandomRobotFabric;
-import by.teachmeskills.robot.fabric.SomeFabric;
-import by.teachmeskills.robot.fabric.hand.HandsFabric;
-import by.teachmeskills.robot.fabric.head.HeadsFabric;
-import by.teachmeskills.robot.fabric.leg.LegsFabric;
+import by.teachmeskills.robot.fabric.RobotFabric;
+import by.teachmeskills.robot.fabric.Fabric;
+import by.teachmeskills.robot.fabric.hand.RandomHandsFabric;
+import by.teachmeskills.robot.fabric.head.RandomHeadsFabric;
+import by.teachmeskills.robot.fabric.leg.RandomLegsFabric;
 import by.teachmeskills.robot.hands.IHand;
 import by.teachmeskills.robot.heads.IHead;
 import by.teachmeskills.robot.legs.ILeg;
@@ -24,29 +24,29 @@ public class Run {
         */
 
 
-        SomeFabric<IHead> headFabric = new HeadsFabric();
-        SomeFabric<IHand> handFabric = new HandsFabric();
-        SomeFabric<ILeg> legFabric = new LegsFabric();
+        Fabric<IHead> headFabric = new RandomHeadsFabric();
+        Fabric<IHand> handFabric = new RandomHandsFabric();
+        Fabric<ILeg> legFabric = new RandomLegsFabric();
 
 
-        Robot robot1 = new RandomRobotFabric(
+        Robot robot1 = new RobotFabric(
                 headFabric.buildSomething(),
                 handFabric.buildSomething(),
                 legFabric.buildSomething()).buildSomething();
 
-        Robot robot2 = new RandomRobotFabric(
+        Robot robot2 = new RobotFabric(
                 headFabric.buildSomething(),
                 handFabric.buildSomething(),
                 legFabric.buildSomething()).buildSomething();
 
-        Robot robot3 = new RandomRobotFabric(
+        Robot robot3 = new RobotFabric(
                 headFabric.buildSomething(),
                 handFabric.buildSomething(),
                 legFabric.buildSomething()).buildSomething();
 
-
+        MostExpensiveRobot mostExpensiveRobot = new MostExpensiveRobot();
         List<Robot> myRobots = Arrays.asList(robot1, robot2, robot3);
-        System.out.println(robot1.getMostExpensive(myRobots).getPrice());
+        System.out.println(mostExpensiveRobot.getMostExpensive(myRobots).getPrice());
 
         System.out.println(robot1.getPrice());
         System.out.println(robot2.getPrice());

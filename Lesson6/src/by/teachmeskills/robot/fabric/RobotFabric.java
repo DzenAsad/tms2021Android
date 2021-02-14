@@ -6,12 +6,12 @@ import by.teachmeskills.robot.heads.IHead;
 import by.teachmeskills.robot.legs.ILeg;
 
 
-public class RandomRobotFabric implements SomeFabric<Robot> {
+public class RobotFabric implements Fabric<Robot> {
     private IHead head;
     private IHand hand;
     private ILeg leg;
 
-    public RandomRobotFabric(IHead heads, IHand hands, ILeg legs) {
+    public RobotFabric(IHead heads, IHand hands, ILeg legs) {
         this.head = heads;
         this.hand = hands;
         this.leg = legs;
