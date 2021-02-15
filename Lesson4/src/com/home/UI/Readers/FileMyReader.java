@@ -1,4 +1,6 @@
-package com.home.UI;
+package com.home.UI.Readers;
+
+import com.home.UI.Readers.MyReader;
 
 import java.io.IOException;
 import java.nio.file.Path;

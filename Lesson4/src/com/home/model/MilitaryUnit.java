@@ -8,7 +8,7 @@ public class MilitaryUnit implements Model {
     private int limit;
     private List<Person> personSet = new LinkedList<>();
 
-    MilitaryUnit(int limit, String name)  {
+    public MilitaryUnit(int limit, String name)  {
         this.name = name;
         this.limit = limit;
     }

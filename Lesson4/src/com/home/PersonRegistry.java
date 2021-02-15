@@ -1,12 +1,9 @@
 package com.home;
 
-import com.home.UI.MyReader;
 import com.home.model.Address;
-import com.home.model.Fabric;
 import com.home.model.Model;
 import com.home.model.Person;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 

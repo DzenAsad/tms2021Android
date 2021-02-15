@@ -1,9 +1,5 @@
 package com.home.model;
 
-import com.home.UI.MyReader;
-
-import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
