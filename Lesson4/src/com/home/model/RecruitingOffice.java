@@ -1,15 +1,15 @@
-package com.home;
+package com.home.model;
 
 
 import com.home.model.Address;
 import com.home.model.MilitaryUnit;
-import com.home.model.Model;
 import com.home.model.Person;
+import com.home.model.PersonRegistry;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class RecruitingOffice implements Model {
+public class RecruitingOffice {
     private final PersonRegistry personRegistry;
     private List<MilitaryUnit> militaryUnits = new LinkedList<>();
 

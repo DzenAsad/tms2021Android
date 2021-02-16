@@ -1,7 +1,7 @@
 package com.home.UI;
 
-import com.home.PersonRegistry;
-import com.home.RecruitingOffice;
+import com.home.model.PersonRegistry;
+import com.home.model.RecruitingOffice;
 import com.home.UI.Readers.ConsoleMyReader;
 import com.home.UI.Readers.FileMyReader;
 import com.home.UI.Readers.MyReader;
@@ -51,20 +51,23 @@ public class Menu {
                 return;
             }
             if (selectedNum == 4 && address != null && personRegistry != null) {
+                //Read from console to list
                 System.out.println("-Please input String like: \"unit_range name\"-");
-                List<String> inputData = myReader.someRead(); //Read from console to list
+                List<String> inputData = myReader.someRead();
+                //RecruitingOffice init
                 List<MilitaryUnit> militaryUnitList = Arrays.asList(fabricControl.getNeedFabric(MilitaryUnit[].class).getSomeObject(inputData));
                 RecruitingOffice recruitingOffice = new RecruitingOffice(personRegistry, militaryUnitList);
-                System.out.println("Recruited people");
                 //Cycle get List<Persons> and show info
+                System.out.println("Recruited people");
                 for (Person person : recruitingOffice.getPeople(address)) {
                     System.out.println(person.getName() + " " + person.getAge() + " " + person.getGender());
                 }
-                recruitingOffice.loadUnits(address); //load units
+                //load units
+                recruitingOffice.loadUnits(address);
                 submenu = 0;
                 outputMenu("Start");
                 return;
-            } else {
+            } else if (selectedNum == 4) {
                 System.out.println("You need initialize Address and PersonRegistry first!");
             }
             if (selectedNum == 0) {
@@ -73,14 +76,16 @@ public class Menu {
             }
         }
 
-        //Console reader activated
+        //Console reader activated Menu
         if (submenu == 1) {
             MyReader myReader = new ConsoleMyReader();
 
             if (selectedNum == 1) {
+                //Read from console to list
                 System.out.println("-Please input String like: \"age name height gender country city\"-");
-                List<String> inputData = myReader.someRead(); //Read from console to list
-                personRegistry = new PersonRegistry(fabricControl.getNeedFabric(Person[].class).getSomeObject(inputData)); //PersonRegistry(Person[])
+                List<String> inputData = myReader.someRead();
+                //PersonRegistry(Person[])
+                personRegistry = new PersonRegistry(fabricControl.getNeedFabric(Person[].class).getSomeObject(inputData));
                 submenu = 0;
                 outputMenu("Start");
                 return;
@@ -100,22 +105,25 @@ public class Menu {
             }
         }
 
-        //File reader activated
+        //File reader activated Menu
         if (submenu == 2) {
-            MyReader myReader = new FileMyReader(); //C:\Users\User\IdeaProjects\tms2021Android\Lesson4.1\src\com\home\data\Persons.txt
+            MyReader myReader = new FileMyReader(); //C:\Users\User\IdeaProjects\tms2021Android\Lesson4\src\com\home\data\Persons.txt
 
 
             if (selectedNum == 1) {
+                //Read from console to list
                 System.out.println("-Please input String like: \"age name height gender country city\"-");
-                List<String> inputData = myReader.someRead(); //Read from console to list
-                personRegistry = new PersonRegistry(fabricControl.getNeedFabric(Person[].class).getSomeObject(inputData)); //PersonRegistry(Person[])
+                List<String> inputData = myReader.someRead();
+                //PersonRegistry(Person[])
+                personRegistry = new PersonRegistry(fabricControl.getNeedFabric(Person[].class).getSomeObject(inputData));
                 submenu = 0;
                 outputMenu("Start");
                 return;
             }
             if (selectedNum == 2) {
+                //Read from console to list
                 System.out.println("-Please input String like: \"country city\"-");
-                List<String> inputData = myReader.someRead(); //Read from console to list
+                List<String> inputData = myReader.someRead();
                 address = fabricControl.getNeedFabric(Address.class).getSomeObject(inputData);
                 submenu = 0;
                 outputMenu("Start");

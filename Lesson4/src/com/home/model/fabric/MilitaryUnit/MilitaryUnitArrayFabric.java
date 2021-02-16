@@ -1,7 +1,7 @@
 package com.home.model.fabric.MilitaryUnit;
 
 import com.home.exception.MyAIOOBException;
-import com.home.exception.MyIOBExeption;
+import com.home.exception.MyIOBException;
 import com.home.model.MilitaryUnit;
 import com.home.model.fabric.Fabric;
 
@@ -12,10 +12,10 @@ public class MilitaryUnitArrayFabric implements Fabric<MilitaryUnit[]> {
     public MilitaryUnit[] getSomeObject(List<String> initData) {
         MilitaryUnit[] array = new MilitaryUnit[initData.size()];
         try {
+            if (initData.size() == 0) {
+                throw new MyIOBException();
+            }
             for (int i = 0; i < array.length; i++) {
-                if (initData.size() == 0) {
-                    throw new MyIOBExeption();
-                }
                 String[] formattedData = initData.get(i).split(" ");
                 if (formattedData.length < 2) {
                     throw new MyAIOOBException();
@@ -23,7 +23,7 @@ public class MilitaryUnitArrayFabric implements Fabric<MilitaryUnit[]> {
                 array[i] = new MilitaryUnit(Integer.parseUnsignedInt(formattedData[0]), formattedData[1]);
             }
             return array;
-        } catch (MyAIOOBException | MyIOBExeption e) {
+        } catch (MyAIOOBException | MyIOBException e) {
             return null;
         } catch (NumberFormatException e) {
             System.out.println("You you entered text instead of number!");

@@ -3,12 +3,12 @@ package com.home.model;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MilitaryUnit implements Model {
+public class MilitaryUnit {
     private String name;
     private int limit;
     private List<Person> personSet = new LinkedList<>();
 
-    public MilitaryUnit(int limit, String name)  {
+    public MilitaryUnit(int limit, String name) {
         this.name = name;
         this.limit = limit;
     }

@@ -3,7 +3,7 @@ package com.home.model;
 import java.util.Objects;
 import java.util.Random;
 
-public class Person implements Model {
+public class Person {
     private Address address;
     private char gender;
     private int age;

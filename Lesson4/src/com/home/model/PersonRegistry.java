@@ -1,13 +1,12 @@
-package com.home;
+package com.home.model;
 
 import com.home.model.Address;
-import com.home.model.Model;
 import com.home.model.Person;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class PersonRegistry implements Model {
+public class PersonRegistry {
     private Person[] citizens;
 
     public PersonRegistry(Person[] citizens) {

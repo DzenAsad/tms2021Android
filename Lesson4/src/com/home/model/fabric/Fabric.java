@@ -10,7 +10,6 @@ public interface Fabric<T> {
 
 // Old realization
 /*
-
 public class FabricOne<T> {
     public Model getModel(String requestedModel, String data) {
         switch (requestedModel) {
