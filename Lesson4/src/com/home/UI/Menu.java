@@ -1,5 +1,6 @@
 package com.home.UI;
 
+import com.home.exception.MyNPE;
 import com.home.model.PersonRegistry;
 import com.home.model.RecruitingOffice;
 import com.home.UI.Readers.ConsoleMyReader;
@@ -50,20 +51,35 @@ public class Menu {
                 outputMenu("Start");
                 return;
             }
-            if (selectedNum == 4 && address != null && personRegistry != null) {
+            if (selectedNum == 4) {
                 //Read from console to list
                 System.out.println("-Please input String like: \"unit_range name\"-");
                 List<String> inputData = myReader.someRead();
-                //RecruitingOffice init
-                List<MilitaryUnit> militaryUnitList = Arrays.asList(fabricControl.getNeedFabric(MilitaryUnit[].class).getSomeObject(inputData));
-                RecruitingOffice recruitingOffice = new RecruitingOffice(personRegistry, militaryUnitList);
-                //Cycle get List<Persons> and show info
-                System.out.println("Recruited people");
-                for (Person person : recruitingOffice.getPeople(address)) {
-                    System.out.println(person.getName() + " " + person.getAge() + " " + person.getGender());
+
+                try {
+                    //Check personRegistry not null
+                    if (personRegistry == null) {
+                        throw new MyNPE("PersonRegistry");
+                    }
+                    //RecruitingOffice init
+                    List<MilitaryUnit> militaryUnitList = Arrays.asList(fabricControl.getNeedFabric(MilitaryUnit[].class).getSomeObject(inputData));
+                    RecruitingOffice recruitingOffice = new RecruitingOffice(personRegistry, militaryUnitList);
+                    //Check address not null
+                    if (address == null) {
+                        throw new MyNPE("Address");
+                    }
+                    //Cycle get List<Persons> and show info
+                    System.out.println("Recruited people");
+                    for (Person person : recruitingOffice.getPeople(address)) {
+                        System.out.println(person.getName() + " " + person.getAge() + " " + person.getGender());
+                    }
+                    //load units
+                    recruitingOffice.loadUnits(address);
+                } catch (MyNPE e) {
+                    submenu = 0;
+                    outputMenu("Start");
+                    return;
                 }
-                //load units
-                recruitingOffice.loadUnits(address);
                 submenu = 0;
                 outputMenu("Start");
                 return;
@@ -174,7 +190,6 @@ public class Menu {
                 } else {
                     System.out.println("Address NOT initialized");
                 }
-
             }
         }
     }

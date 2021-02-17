@@ -1,6 +1,5 @@
 package com.home.model.fabric.MilitaryUnit;
 
-import com.home.exception.MyNFException;
 import com.home.model.MilitaryUnit;
 import com.home.model.fabric.Fabric;
 
@@ -24,7 +23,8 @@ public class MilitaryUnitArrayFabric implements Fabric<MilitaryUnit[]> {
             try {
                 array[i] = new MilitaryUnit(Integer.parseUnsignedInt(formattedData[0]), formattedData[1]);
             } catch (NumberFormatException e) {
-                throw new MyNFException(e);
+                System.err.println("You entered text instead of number!");
+                return null;
             }
         }
         return array;

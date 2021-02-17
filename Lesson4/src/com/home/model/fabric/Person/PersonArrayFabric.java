@@ -1,6 +1,5 @@
 package com.home.model.fabric.Person;
 
-import com.home.exception.MyNFException;
 import com.home.model.Address;
 import com.home.model.Person;
 import com.home.model.fabric.Fabric;
@@ -28,7 +27,8 @@ public class PersonArrayFabric implements Fabric<Person[]> {
                 person.setAddress(address);
                 array[i] = person;
             } catch (NumberFormatException e) {
-                throw new MyNFException(e);
+                System.err.println("You entered text instead of number!");
+                return null;
             }
         }
         return array;
