@@ -23,8 +23,8 @@ public class PersonArrayFabric implements Fabric<Person[]> {
             }
             try {
                 Person person = new Person(Integer.parseInt(formattedData[0]),
-                        formattedData[1].toLowerCase().replaceFirst("^\\w", formattedData[1].substring(0, 1).toUpperCase()),
-                        formattedData[2].toLowerCase().replaceFirst("^\\w", formattedData[2].substring(0, 1).toUpperCase()),
+                        formattedData[1],
+                        formattedData[2],
                         Integer.parseInt(formattedData[3]),
                         formattedData[4].toCharArray()[0]);
                 Address address = new Address(formattedData[5], formattedData[6]);
