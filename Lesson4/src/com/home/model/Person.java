@@ -18,14 +18,14 @@ public class Person {
         this(age, name);
         this.height = height;
         this.gender = gender;
-        this.surname = surname.toLowerCase().replaceFirst("^\\w", surname.substring(0, 1).toUpperCase());
+        this.surname = surname.trim().toLowerCase().replaceFirst("^\\w", surname.substring(0, 1).toUpperCase());
     }
 
     public Person(int age, String name) {
         this();
         this.height = 180;
         this.age = age;
-        this.name = name.toLowerCase().replaceFirst("^\\w", name.substring(0, 1).toUpperCase());
+        this.name = name.trim().toLowerCase().replaceFirst("^\\w", name.substring(0, 1).toUpperCase());
         this.gender = 'n';
 
     }

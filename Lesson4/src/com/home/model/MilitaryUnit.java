@@ -49,13 +49,13 @@ public class MilitaryUnit {
     public enum ResultUnit {
         UNIT_FULL,
         ALREADY_IN,
-        SUCCESS;
+        SUCCESS
     }
 
     public void sortListPerson() {
-        String[] tmpArrPerson = new String[this.personSet.size()];
+        String[] tmpArrPerson = new String[personSet.size()];
         for (int i = 0; i < tmpArrPerson.length; i++) {
-            tmpArrPerson[i] = i + 1 + ". " + this.personSet.get(i).getSurname() + " " + this.personSet.get(i).getName();
+            tmpArrPerson[i] = personSet.get(i).getSurname() + " " + personSet.get(i).getName();
         }
         Arrays.sort(tmpArrPerson);
         System.out.println(Arrays.deepToString(tmpArrPerson));
