@@ -71,7 +71,7 @@ public class Menu {
                     //Cycle get List<Persons> and show info
                     System.out.println("Recruited people");
                     for (Person person : recruitingOffice.getPeople(address)) {
-                        System.out.println(person.getName() + " " + person.getAge() + " " + person.getGender());
+                        System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
                     }
                     //load units
                     recruitingOffice.loadUnits(address);

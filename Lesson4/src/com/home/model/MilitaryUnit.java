@@ -1,5 +1,6 @@
 package com.home.model;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,5 +50,14 @@ public class MilitaryUnit {
         UNIT_FULL,
         ALREADY_IN,
         SUCCESS;
+    }
+
+    public void sortListPerson() {
+        String[] tmpArrPerson = new String[this.personSet.size()];
+        for (int i = 0; i < tmpArrPerson.length; i++) {
+            tmpArrPerson[i] = i + ". " + this.personSet.get(i).getSurname() + " " + this.personSet.get(i).getName();
+        }
+        Arrays.sort(tmpArrPerson);
+        System.out.println(Arrays.deepToString(tmpArrPerson));
     }
 }

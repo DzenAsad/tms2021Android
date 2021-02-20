@@ -1,11 +1,6 @@
 package com.home.model;
 
 
-import com.home.model.Address;
-import com.home.model.MilitaryUnit;
-import com.home.model.Person;
-import com.home.model.PersonRegistry;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -62,7 +57,8 @@ public class RecruitingOffice {
         int countFreeUnit = 0;
         for (MilitaryUnit militaryUnit : this.militaryUnits) {
             if (militaryUnit.getFree() > 0) {
-                System.out.println(militaryUnit.getName() + " has free " + militaryUnit.getFree());
+                System.out.print(militaryUnit.getName() + " has free " + militaryUnit.getFree() + " ");
+                militaryUnit.sortListPerson();
                 countFreeUnit++;
             }
         }
