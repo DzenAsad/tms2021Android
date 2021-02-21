@@ -58,8 +58,11 @@ public class RecruitingOffice {
         int countFreeUnit = 0;
         for (MilitaryUnit militaryUnit : this.militaryUnits) {
             if (militaryUnit.getFree() > 0) {
-                System.out.print(militaryUnit.getName() + " has free " + militaryUnit.getFree() + " ");
-                System.out.println(Arrays.deepToString(militaryUnit.sortListPerson()));
+                System.out.println(militaryUnit.getName() + " has free " + militaryUnit.getFree() + " ");
+                String[] listSoldats = militaryUnit.sortListPerson();
+                for (int i = 0; i < listSoldats.length; i++) {
+                    System.out.println(listSoldats[i] = i + 1 + ". " + listSoldats[i]);
+                }
                 countFreeUnit++;
             }
         }
