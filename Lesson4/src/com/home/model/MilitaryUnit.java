@@ -52,7 +52,7 @@ public class MilitaryUnit {
         SUCCESS
     }
 
-    public void sortListPerson() {
+    public String[] sortListPerson() {
         String[] tmpArrPerson = new String[personSet.size()];
         for (int i = 0; i < tmpArrPerson.length; i++) {
             tmpArrPerson[i] = personSet.get(i).getSurname() + " " + personSet.get(i).getName();
@@ -62,6 +62,6 @@ public class MilitaryUnit {
 
             tmpArrPerson[i] = i + 1 + ". " + tmpArrPerson[i];
         }
-        System.out.println(Arrays.deepToString(tmpArrPerson));
+        return  tmpArrPerson;
     }
 }

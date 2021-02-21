@@ -1,6 +1,7 @@
 package com.home.model;
 
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class RecruitingOffice {
         for (MilitaryUnit militaryUnit : this.militaryUnits) {
             if (militaryUnit.getFree() > 0) {
                 System.out.print(militaryUnit.getName() + " has free " + militaryUnit.getFree() + " ");
-                militaryUnit.sortListPerson();
+                System.out.println(Arrays.deepToString(militaryUnit.sortListPerson()));
                 countFreeUnit++;
             }
         }
