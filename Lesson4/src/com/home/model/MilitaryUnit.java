@@ -58,6 +58,10 @@ public class MilitaryUnit {
             tmpArrPerson[i] = personSet.get(i).getSurname() + " " + personSet.get(i).getName();
         }
         Arrays.sort(tmpArrPerson);
+        for (int i = 0; i < tmpArrPerson.length; i++) {
+
+            tmpArrPerson[i] = i + 1 + ". " + tmpArrPerson[i];
+        }
         System.out.println(Arrays.deepToString(tmpArrPerson));
     }
 }
