@@ -1,6 +1,7 @@
 package com.home.UI;
 
-import com.home.exception.MyNPE;
+import com.home.exception.MissingAddressException;
+import com.home.exception.MissingRegistryException;
 import com.home.model.PersonRegistry;
 import com.home.model.RecruitingOffice;
 import com.home.UI.Readers.ConsoleMyReader;
@@ -59,14 +60,14 @@ public class Menu {
                 try {
                     //Check personRegistry not null
                     if (personRegistry == null) {
-                        throw new MyNPE("PersonRegistry");
+                        throw new MissingRegistryException();
                     }
                     //RecruitingOffice init
                     List<MilitaryUnit> militaryUnitList = Arrays.asList(fabricControl.getNeedFabric(MilitaryUnit[].class).getSomeObject(inputData));
                     RecruitingOffice recruitingOffice = new RecruitingOffice(personRegistry, militaryUnitList);
                     //Check address not null
                     if (address == null) {
-                        throw new MyNPE("Address");
+                        throw new MissingAddressException();
                     }
                     //Cycle get List<Persons> and show info
                     System.out.println("Recruited people");
@@ -75,7 +76,7 @@ public class Menu {
                     }
                     //load units
                     recruitingOffice.loadUnits(address);
-                } catch (MyNPE e) {
+                } catch (MissingAddressException | MissingRegistryException e) {
                     submenu = 0;
                     outputMenu("Start");
                     return;
