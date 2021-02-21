@@ -1,19 +1,17 @@
 package com.home.UI;
 
 import com.home.exception.MissingAddressException;
-import com.home.exception.MissingRegistryException;
 import com.home.model.PersonRegistry;
 import com.home.model.RecruitingOffice;
 import com.home.UI.Readers.ConsoleMyReader;
 import com.home.UI.Readers.FileMyReader;
 import com.home.UI.Readers.MyReader;
 import com.home.model.Address;
-import com.home.model.MilitaryUnit;
 import com.home.model.Person;
 import com.home.model.fabric.FabricControl;
+import com.home.model.fabric.RecruitingOffice.RecruitingOfficeFabric;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -47,7 +45,6 @@ public class Menu {
                 return;
             }
             if (selectedNum == 3) {
-                submenu = 0;
                 outputMenu("showStatusInfo");
                 outputMenu("Start");
                 return;
@@ -56,36 +53,27 @@ public class Menu {
                 //Read from console to list
                 System.out.println("-Please input String like: \"unit_range name\"-");
                 List<String> inputData = myReader.someRead();
-
+                //Init RecruitingOffice
+                RecruitingOffice recruitingOffice = ((RecruitingOfficeFabric) fabricControl.getNeedFabric(RecruitingOffice.class)).setPersonRegistry(personRegistry).getSomeObject(inputData);
                 try {
-                    //Check personRegistry not null
-                    if (personRegistry == null) {
-                        throw new MissingRegistryException();
-                    }
-                    //RecruitingOffice init
-                    List<MilitaryUnit> militaryUnitList = Arrays.asList(fabricControl.getNeedFabric(MilitaryUnit[].class).getSomeObject(inputData));
-                    RecruitingOffice recruitingOffice = new RecruitingOffice(personRegistry, militaryUnitList);
                     //Check address not null
                     if (address == null) {
                         throw new MissingAddressException();
+                    } else {
+                        //Cycle get List<Persons> and show info
+                        System.out.println("Recruited people");
+                        for (Person person : recruitingOffice.getPeople(address)) {
+                            System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
+                        }
+                        //load units
+                        recruitingOffice.loadUnits(address);
                     }
-                    //Cycle get List<Persons> and show info
-                    System.out.println("Recruited people");
-                    for (Person person : recruitingOffice.getPeople(address)) {
-                        System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
-                    }
-                    //load units
-                    recruitingOffice.loadUnits(address);
-                } catch (MissingAddressException | MissingRegistryException e) {
-                    submenu = 0;
-                    outputMenu("Start");
-                    return;
+                } catch (MissingAddressException e) {
+                    System.err.println("Can't execute");
                 }
                 submenu = 0;
                 outputMenu("Start");
                 return;
-            } else if (selectedNum == 4) {
-                System.out.println("You need initialize Address and PersonRegistry first!");
             }
             if (selectedNum == 0) {
                 flag = false;
