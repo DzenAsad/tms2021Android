@@ -1,12 +1,18 @@
 package com.home.UI;
 
-import com.home.PersonRegistry;
-import com.home.RecruitingOffice;
+import com.home.exception.MissingAddressException;
+import com.home.model.PersonRegistry;
+import com.home.model.RecruitingOffice;
+import com.home.UI.Readers.ConsoleMyReader;
+import com.home.UI.Readers.FileMyReader;
+import com.home.UI.Readers.MyReader;
 import com.home.model.Address;
-import com.home.model.Fabric;
 import com.home.model.Person;
+import com.home.model.fabric.FabricControl;
+import com.home.model.fabric.RecruitingOffice.RecruitingOfficeFabric;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class Menu {
@@ -22,7 +28,7 @@ public class Menu {
     //Menu logic
     public void workMenu(String enteredNumber) throws IOException {
         int selectedNum = Integer.parseInt(enteredNumber);
-        Fabric fabric = new Fabric();
+        FabricControl fabricControl = new FabricControl();
 
 
         //Main menu
@@ -39,24 +45,35 @@ public class Menu {
                 return;
             }
             if (selectedNum == 3) {
-                submenu = 0;
                 outputMenu("showStatusInfo");
                 outputMenu("Start");
                 return;
             }
-            if (selectedNum == 4 && address != null && personRegistry != null) {
-                RecruitingOffice recruitingOffice = (RecruitingOffice) fabric.getModelRecruitingOffice(personRegistry, myReader);
-                System.out.println("Recruited people");
-                //Cycle get List<Persons> and show info
-                for (Person person : recruitingOffice.getPeople(address)) {
-                    System.out.println(person.getName() + " " + person.getAge() + " " + person.getGender());
+            if (selectedNum == 4) {
+                //Read from console to list
+                System.out.println("-Please input String like: \"unit_range name\"-");
+                List<String> inputData = myReader.someRead();
+                //Init RecruitingOffice
+                RecruitingOffice recruitingOffice = ((RecruitingOfficeFabric) fabricControl.getNeedFabric(RecruitingOffice.class)).setPersonRegistry(personRegistry).getSomeObject(inputData);
+                try {
+                    //Check address not null
+                    if (address == null) {
+                        throw new MissingAddressException();
+                    } else {
+                        //Cycle get List<Persons> and show info
+                        System.out.println("Recruited people");
+                        for (Person person : recruitingOffice.getPeople(address)) {
+                            System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
+                        }
+                        //load units
+                        recruitingOffice.loadUnits(address);
+                    }
+                } catch (MissingAddressException e) {
+                    System.err.println("Can't execute");
                 }
-                recruitingOffice.loadUnits(address); //load units
                 submenu = 0;
                 outputMenu("Start");
                 return;
-            } else {
-                System.out.println("You need initialize Address and PersonRegistry first!");
             }
             if (selectedNum == 0) {
                 flag = false;
@@ -64,18 +81,24 @@ public class Menu {
             }
         }
 
-        //Console reader activated
+        //Console reader activated Menu
         if (submenu == 1) {
             MyReader myReader = new ConsoleMyReader();
 
             if (selectedNum == 1) {
-                personRegistry = (PersonRegistry) fabric.getModel("PersonRegistry", myReader);
+                //Read from console to list
+                System.out.println("-Please input String like: \"age name height gender country city\"-");
+                List<String> inputData = myReader.someRead();
+                //PersonRegistry(Person[])
+                personRegistry = new PersonRegistry(fabricControl.getNeedFabric(Person[].class).getSomeObject(inputData));
                 submenu = 0;
                 outputMenu("Start");
                 return;
             }
             if (selectedNum == 2) {
-                address = (Address) fabric.getModel("Address", myReader);
+                System.out.println("-Please input String like: \"country city\"-");
+                List<String> inputData = myReader.someRead(); //Read from console to list
+                address = fabricControl.getNeedFabric(Address.class).getSomeObject(inputData);
                 submenu = 0;
                 outputMenu("Start");
                 return;
@@ -87,19 +110,26 @@ public class Menu {
             }
         }
 
-        //File reader activated
+        //File reader activated Menu
         if (submenu == 2) {
-            MyReader myReader = new FileMyReader(); //C:\Users\User\IdeaProjects\tms2021Android\Lesson4.1\src\com\home\data\Persons.txt
+            MyReader myReader = new FileMyReader(); //C:\Users\User\IdeaProjects\tms2021Android\Lesson4\src\com\home\data\Persons.txt
 
 
             if (selectedNum == 1) {
-                personRegistry = (PersonRegistry) fabric.getModel("PersonRegistry", myReader);
+                //Read from console to list
+                System.out.println("-Please input String like: \"age name height gender country city\"-");
+                List<String> inputData = myReader.someRead();
+                //PersonRegistry(Person[])
+                personRegistry = new PersonRegistry(fabricControl.getNeedFabric(Person[].class).getSomeObject(inputData));
                 submenu = 0;
                 outputMenu("Start");
                 return;
             }
             if (selectedNum == 2) {
-                address = (Address) fabric.getModel("Address", myReader);
+                //Read from console to list
+                System.out.println("-Please input String like: \"country city\"-");
+                List<String> inputData = myReader.someRead();
+                address = fabricControl.getNeedFabric(Address.class).getSomeObject(inputData);
                 submenu = 0;
                 outputMenu("Start");
                 return;
@@ -149,7 +179,6 @@ public class Menu {
                 } else {
                     System.out.println("Address NOT initialized");
                 }
-
             }
         }
     }

@@ -2,7 +2,7 @@ package com.home.model;
 
 import java.util.Objects;
 
-public class Address implements Model {
+public class Address {
     private String country;
     private String city;
 

@@ -1,14 +1,15 @@
 package com.home.model;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MilitaryUnit implements Model {
+public class MilitaryUnit {
     private String name;
     private int limit;
     private List<Person> personSet = new LinkedList<>();
 
-    MilitaryUnit(int limit, String name)  {
+    public MilitaryUnit(int limit, String name) {
         this.name = name;
         this.limit = limit;
     }
@@ -48,6 +49,15 @@ public class MilitaryUnit implements Model {
     public enum ResultUnit {
         UNIT_FULL,
         ALREADY_IN,
-        SUCCESS;
+        SUCCESS
+    }
+
+    public String[] sortListPerson() {
+        String[] tmpArrPerson = new String[personSet.size()];
+        for (int i = 0; i < tmpArrPerson.length; i++) {
+            tmpArrPerson[i] = personSet.get(i).getSurname() + " " + personSet.get(i).getName();
+        }
+        Arrays.sort(tmpArrPerson);
+        return  tmpArrPerson;
     }
 }

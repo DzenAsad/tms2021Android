@@ -1,33 +1,31 @@
 package com.home.model;
 
-import com.home.UI.MyReader;
-
-import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-public class Person implements Model {
+public class Person {
     private Address address;
     private char gender;
     private int age;
     private String name;
+    private String surname;
     private int height;
 
     public Person() {
     }
 
-    public Person(int age, String name, int height, char gender) {
+    public Person(int age, String name, String surname, int height, char gender) {
         this(age, name);
         this.height = height;
         this.gender = gender;
+        this.surname = surname.trim().toLowerCase().replaceFirst("^\\w", surname.substring(0, 1).toUpperCase());
     }
 
     public Person(int age, String name) {
         this();
         this.height = 180;
         this.age = age;
-        this.name = name;
+        this.name = name.trim().toLowerCase().replaceFirst("^\\w", name.substring(0, 1).toUpperCase());
         this.gender = 'n';
 
     }
@@ -87,16 +85,24 @@ public class Person implements Model {
         this.gender = gender;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return gender == person.gender && age == person.age && height == person.height && address.equals(person.address) && name.equals(person.name);
+        return gender == person.gender && age == person.age && height == person.height && Objects.equals(address, person.address) && Objects.equals(name, person.name) && Objects.equals(surname, person.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(address, gender, age, name, height);
+        return Objects.hash(address, gender, age, name, surname, height);
     }
 }

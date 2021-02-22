@@ -1,15 +1,10 @@
-package com.home;
+package com.home.model;
 
-
-import com.home.model.Address;
-import com.home.model.MilitaryUnit;
-import com.home.model.Model;
-import com.home.model.Person;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class RecruitingOffice implements Model {
+public class RecruitingOffice {
     private final PersonRegistry personRegistry;
     private List<MilitaryUnit> militaryUnits = new LinkedList<>();
 
@@ -62,7 +57,11 @@ public class RecruitingOffice implements Model {
         int countFreeUnit = 0;
         for (MilitaryUnit militaryUnit : this.militaryUnits) {
             if (militaryUnit.getFree() > 0) {
-                System.out.println(militaryUnit.getName() + " has free " + militaryUnit.getFree());
+                System.out.println(militaryUnit.getName() + " has free " + militaryUnit.getFree() + " ");
+                String[] listSoldats = militaryUnit.sortListPerson();
+                for (int i = 0; i < listSoldats.length; i++) {
+                    System.out.println(listSoldats[i] = i + 1 + ". " + listSoldats[i]);
+                }
                 countFreeUnit++;
             }
         }

@@ -1,14 +1,9 @@
 package com.home;
 
 import com.home.UI.Menu;
-import com.home.model.Address;
-import com.home.model.Person;
+
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -45,8 +40,6 @@ public class Main {
 //        }
 
 
-
-
         Scanner scanner = new Scanner(System.in);
         Menu menu = new Menu();
 
@@ -57,8 +50,6 @@ public class Main {
 
 
     }
-
-
 
 
 }
