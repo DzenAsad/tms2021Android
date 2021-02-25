@@ -17,6 +17,7 @@ public class HandlerLesson2 implements MyHandler {
         String[] formattedData = TextFormatter.getSentences(string);
         TmsWriter anotherWriter = new TmsFileWriter(OUTPUT_PATH);
         for (String sentence: formattedData){
+            System.out.println(TextFormatter.getNumbWords(sentence));
             if (TextFormatter.checkPalindrome(sentence)){
                 anotherWriter.append(sentence);
             }
