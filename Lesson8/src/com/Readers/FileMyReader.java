@@ -1,4 +1,4 @@
-package com.home.UI.Readers;
+package com.Readers;
 
 
 import java.io.IOException;
@@ -23,4 +23,5 @@ public class FileMyReader implements MyReader {
         fileScanner.close();
         return data;
     }
+
 }
