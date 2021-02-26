@@ -1,13 +1,14 @@
 package com.examShop.UI.menu;
 
-public class MenuHUD_Console extends MenuHUD{
+public class MenuHUD_Console extends MenuHUD {
 
     @Override
-    public void outputMenu(MenuCase menuCase) {
+    public void showMenu(MenuCase menuCase) {
         switch (menuCase) {
             case MENU_MAIN -> {
                 System.out.println("1. Shop");
                 System.out.println("2. Bookkeeping");
+                System.out.println("3. Chose reader");
                 System.out.println("0. Exit");
             }
             case MENU_SHOP -> {
@@ -18,7 +19,7 @@ public class MenuHUD_Console extends MenuHUD{
             case MENU_SHOP_PRODUCT_WORK -> {
                 System.out.println("1. Add Product");
                 System.out.println("2. Remove Product");
-                System.out.println("2. Edit Product");
+                System.out.println("3. Edit Product");
                 System.out.println("0 Back");
             }
             case MENU_SHOP_PRODUCT_SHOW -> {
@@ -27,6 +28,11 @@ public class MenuHUD_Console extends MenuHUD{
                 System.out.println("0 Back");
             }
             case MENU_BOOKKEEPING -> {
+                System.out.println("0 Back");
+            }
+            case MENU_OPTION_READER -> {
+                System.out.println("1. Console Reader");
+                System.out.println("2. File Reader");
                 System.out.println("0 Back");
             }
         }

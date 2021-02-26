@@ -2,6 +2,6 @@ package com.examShop.UI.menu;
 
 public abstract class MenuHUD {
 
-    public abstract void outputMenu(MenuCase menuCase);
+    public abstract void showMenu(MenuCase menuCase);
 
 }
