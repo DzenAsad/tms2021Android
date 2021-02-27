@@ -1,6 +1,6 @@
 package com.examShop.model.product;
 
-public abstract class Product {
+public class Product {
     private final int ID;
     private String name;
     private String type;

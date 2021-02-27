@@ -15,7 +15,7 @@ public class MainHandler {
     private final FabricControl fabricControl = new FabricControl();
     Scanner scanner = new Scanner(System.in);
     private MenuHUD m_HUD = fabricControl.getRequiredFabric(MenuHUD.class).getSomeObject(FabricForMenuHUD.FabricCase.CONSOLE.getThisCase());
-    private ShopReader optionalReader;
+    private ShopReader optionalReader = fabricControl.getRequiredFabric(ShopReader.class).getSomeObject(FabricForShopReader.FabricCase.CONSOLE.getThisCase());
     private MenuCase menuCase = MenuCase.MENU_MAIN;
 
     public void startProgram(){
