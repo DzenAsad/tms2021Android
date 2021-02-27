@@ -1,12 +1,14 @@
 package com.examShop.model.shop;
 
 import com.examShop.model.product.Product;
+import com.examShop.model.warehouse.Warehouse;
 
 import java.util.*;
 
 
 public class Shop {
-    LinkedHashMap<Integer, Product> products = new LinkedHashMap<>();
+    private final LinkedHashMap<Integer, Product> products = new LinkedHashMap<>();
+    private final Warehouse warehouse = new Warehouse();
 
     public void addProductInShop(Product product) {
 
@@ -27,5 +29,9 @@ public class Shop {
 
     public LinkedHashMap<Integer, Product> getProducts() {
         return products;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
     }
 }

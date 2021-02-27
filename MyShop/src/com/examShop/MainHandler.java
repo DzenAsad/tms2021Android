@@ -155,8 +155,10 @@ public class MainHandler {
             System.err.println("No info entered");
         }
         for (String string : tmpString) {
+            shop.getWarehouse().removeProductFromWarehouse(shop.getProducts().get(Integer.parseInt(string)));
             shop.deleteProductInShop(Integer.parseInt(string));
         }
+
     }
 
     private void editProductInShop(){
@@ -180,4 +182,17 @@ public class MainHandler {
         }
     }
 
+    private void addProductsToWarehouse(int id, int count){
+        Product product = shop.getProducts().get(id);
+        if (product  != null){
+            shop.getWarehouse().addProductInWarehouse(product, count);
+        }
+    }
+
+    private void buyProductsFromWarehouse(int id, int count){
+        Product product = shop.getProducts().get(id);
+        if (product  != null){
+            shop.getWarehouse().editProductCountInWarehouse(product, -count);
+        }
+    }
 }
