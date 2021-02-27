@@ -88,7 +88,7 @@ public class MainHandler {
                     return;
                 }
                 if (entered_CMD.equals("3")) {
-                    editProductInShop()
+                    editProductInShop();
                     return;
                 }
                 if (entered_CMD.equals("0")) {
