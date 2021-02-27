@@ -6,7 +6,7 @@ import java.util.*;
 
 
 public class Shop {
-    LinkedHashMap<Integer, Product> products;
+    LinkedHashMap<Integer, Product> products = new LinkedHashMap<>();
 
     public void addProductInShop(Product product) {
 
@@ -25,5 +25,7 @@ public class Shop {
         products.put(product.getID(), product);
     }
 
-
+    public LinkedHashMap<Integer, Product> getProducts() {
+        return products;
+    }
 }
