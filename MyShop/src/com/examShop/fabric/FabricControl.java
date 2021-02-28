@@ -12,7 +12,7 @@ import com.examShop.model.shop.Shop;
 
 public class FabricControl {
 
-    public <T> Fabric<T> getRequiredFabric(Class<T> clazz) {
+    public static <T> Fabric<T> getRequiredFabric(Class<T> clazz) {
         //ShopReader Fabrics
         if (clazz == ShopReader.class) {
             return (Fabric<T>) new FabricForShopReader();

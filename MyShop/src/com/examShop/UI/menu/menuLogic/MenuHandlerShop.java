@@ -4,10 +4,8 @@ import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.reader.ShopReader;
 import com.examShop.model.shop.Shop;
 
-public class MenuData_MENU_MAIN extends MenuData{
-
-
-    public MenuData_MENU_MAIN(Shop shop, ShopReader optionalReader) {
+public class MenuHandlerShop extends MenuHandler {
+    public MenuHandlerShop(Shop shop, ShopReader optionalReader) {
         super(shop, optionalReader);
     }
 
@@ -15,18 +13,20 @@ public class MenuData_MENU_MAIN extends MenuData{
     public MenuCase casesSwitch(String cmd) {
         switch (cmd) {
             case ("1"): {
-                return MenuCase.MENU_SHOP;
+                return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
             case ("2"): {
-                return MenuCase.MENU_BOOKKEEPING;
+                return MenuCase.MENU_SHOP_PRODUCT_SHOW;
             }
             case ("3"): {
-                return MenuCase.MENU_OPTION_READER;
+                return MenuCase.MENU_SHOP_WAREHOUSE;
             }
             case ("0"): {
-                return MenuCase.EXIT;
+                return MenuCase.MENU_MAIN;
+            }
+            default:{
+                return MenuCase.MENU_SHOP;
             }
         }
-        return null;
     }
 }
