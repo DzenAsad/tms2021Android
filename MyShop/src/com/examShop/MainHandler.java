@@ -2,6 +2,8 @@ package com.examShop;
 
 import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.menu.MenuHUD;
+import com.examShop.UI.menu.menuLogic.MenuData;
+import com.examShop.UI.menu.menuLogic.MenuData_MENU_MAIN;
 import com.examShop.UI.reader.ShopReader;
 import com.examShop.fabric.FabricControl;
 import com.examShop.fabric.menu.FabricForMenuHUD;
@@ -18,7 +20,6 @@ import java.util.Scanner;
 
 
 public class MainHandler {
-    private boolean flag = true;
 
     private final FabricControl fabricControl = new FabricControl();
     private final Scanner scanner = new Scanner(System.in);
@@ -37,97 +38,97 @@ public class MainHandler {
 
     public void startProgram() {
 
-        while (flag) {
+        while (menuCase != MenuCase.EXIT) {
             m_HUD.showMenu(menuCase);
-            menuAction(scanner.next());
+            menuCase = menuAction(scanner.next());
+
         }
 
     }
 
 
-    private void menuAction(String entered_CMD) {
+    private MenuCase menuAction(String entered_CMD) {
         switch (menuCase) {
             case MENU_MAIN: {
-                if (entered_CMD.equals("1")) {
-                    menuCase = MenuCase.MENU_SHOP;
-                    return;
-                }
-                if (entered_CMD.equals("2")) {
-                    menuCase = MenuCase.MENU_BOOKKEEPING;
-                    return;
-                }
-                if (entered_CMD.equals("3")) {
-                    menuCase = MenuCase.MENU_OPTION_READER;
-                    return;
-                }
-                if (entered_CMD.equals("0")) {
-                    flag = false;
-                }
+                return new MenuData_MENU_MAIN(shop, optionalReader).casesSwitch(entered_CMD);
             }
             case MENU_SHOP: {
                 if (entered_CMD.equals("1")) {
-                    menuCase = MenuCase.MENU_SHOP_PRODUCT_WORK;
-                    return;
+                    return MenuCase.MENU_SHOP_PRODUCT_WORK;
                 }
                 if (entered_CMD.equals("2")) {
-                    menuCase = MenuCase.MENU_SHOP_PRODUCT_SHOW;
-                    return;
+                    return MenuCase.MENU_SHOP_PRODUCT_SHOW;
+                }
+                if (entered_CMD.equals("3")) {
+                    return MenuCase.MENU_SHOP_WAREHOUSE;
                 }
                 if (entered_CMD.equals("0")) {
-                    menuCase = MenuCase.MENU_MAIN;
-                    return;
+                    return MenuCase.MENU_MAIN;
                 }
             }
             case MENU_SHOP_PRODUCT_WORK: {
                 if (entered_CMD.equals("1")) {
                     addProductInShop();
-                    return;
+                    return menuCase;
                 }
                 if (entered_CMD.equals("2")) {
                     deleteProductInShop();
-                    return;
+                    return menuCase;
                 }
                 if (entered_CMD.equals("3")) {
                     editProductInShop();
-                    return;
+                    return menuCase;
                 }
                 if (entered_CMD.equals("0")) {
-                    menuCase = MenuCase.MENU_SHOP;
-                    return;
+                    return MenuCase.MENU_SHOP;
                 }
             }
             case MENU_SHOP_PRODUCT_SHOW: {
                 if (entered_CMD.equals("1")) {
                     showProductsByPrice();
-                    return;
+                    return menuCase;
                 }
                 if (entered_CMD.equals("2")) {
-                    return;
+                    showProductsByAdding();
+                    return menuCase;
                 }
                 if (entered_CMD.equals("0")) {
-                    menuCase = MenuCase.MENU_SHOP;
-                    return;
+                    return MenuCase.MENU_SHOP;
+                }
+            }
+            case MENU_SHOP_WAREHOUSE: {
+                if (entered_CMD.equals("1")) {
+                    addProductsToWarehouse();
+                    return menuCase;
+                }
+                if (entered_CMD.equals("2")) {
+                    buyProductsFromWarehouse();
+                    return menuCase;
+                }
+                if (entered_CMD.equals("0")) {
+                    return MenuCase.MENU_SHOP;
                 }
             }
             case MENU_BOOKKEEPING: {
                 if (entered_CMD.equals("0")) {
-                    menuCase = MenuCase.MENU_MAIN;
-                    return;
+                    return MenuCase.MENU_MAIN;
                 }
             }
             case MENU_OPTION_READER: {
                 if (entered_CMD.equals("1")) {
                     optionalReader = fabricControl.getRequiredFabric(ShopReader.class).getSomeObject(FabricForShopReader.FabricCase.CONSOLE.getThisCase());
-                    return;
+                    return menuCase;
                 }
                 if (entered_CMD.equals("2")) {
                     optionalReader = fabricControl.getRequiredFabric(ShopReader.class).getSomeObject(FabricForShopReader.FabricCase.FILE.getThisCase());
-                    return;
+                    return menuCase;
                 }
                 if (entered_CMD.equals("0")) {
-                    menuCase = MenuCase.MENU_MAIN;
-                    return;
+                    return MenuCase.MENU_MAIN;
                 }
+            }
+            default: {
+                return menuCase;
             }
         }
     }
@@ -178,21 +179,51 @@ public class MainHandler {
         List<Product> tmpString = shop.getAllProductsInShop();
         tmpString.sort(Comparator.comparingInt(Product::getPrice));
         for(Product product: tmpString){
-            System.out.println(product.toString());
+            System.out.println(product.toString() + " In warehouse:" + shop.getWarehouse().getCountInWarehouse(product));
         }
     }
 
-    private void addProductsToWarehouse(int id, int count){
-        Product product = shop.getProducts().get(id);
-        if (product  != null){
-            shop.getWarehouse().addProductInWarehouse(product, count);
+    private void showProductsByAdding(){
+        List<Product> tmpString = shop.getAllProductsInShop();
+        for(Product product: tmpString){
+            System.out.println(product.toString() + " In warehouse:" + shop.getWarehouse().getCountInWarehouse(product));
         }
     }
 
-    private void buyProductsFromWarehouse(int id, int count){
-        Product product = shop.getProducts().get(id);
-        if (product  != null){
-            shop.getWarehouse().editProductCountInWarehouse(product, -count);
+    private void addProductsToWarehouse(){
+        System.out.println("Enter info");
+        List<String> tmpString = new LinkedList<>();
+        try {
+            tmpString = optionalReader.someRead();
+        } catch (IOException e) {
+            System.err.println("No info entered");
+        }
+        for (String string: tmpString){
+            String[] formattedData = string.split("\\W+");
+            Product product = shop.getProducts().get(Integer.parseInt(formattedData[0]));
+            int count = Integer.parseInt(formattedData[1]);
+            if (product  != null){
+                shop.getWarehouse().addProductInWarehouse(product, count);
+            }
+        }
+
+    }
+
+    private void buyProductsFromWarehouse(){
+        System.out.println("Enter info");
+        List<String> tmpString = new LinkedList<>();
+        try {
+            tmpString = optionalReader.someRead();
+        } catch (IOException e) {
+            System.err.println("No info entered");
+        }
+        for (String string: tmpString){
+            String[] formattedData = string.split("\\W+");
+            Product product = shop.getProducts().get(Integer.parseInt(formattedData[0]));
+            int count = Integer.parseInt(formattedData[1]);
+            if (product  != null){
+                shop.getWarehouse().editProductCountInWarehouse(product, -count);
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ public class MenuHUD_Console extends MenuHUD {
             case MENU_SHOP -> {
                 System.out.println("1. Work with products");
                 System.out.println("2. Show products");
+                System.out.println("3. Warehouse");
                 System.out.println("0 Back");
             }
             case MENU_SHOP_PRODUCT_WORK -> {
@@ -33,6 +34,11 @@ public class MenuHUD_Console extends MenuHUD {
             case MENU_OPTION_READER -> {
                 System.out.println("1. Console Reader");
                 System.out.println("2. File Reader");
+                System.out.println("0 Back");
+            }
+            case MENU_SHOP_WAREHOUSE -> {
+                System.out.println("1. Add Product to Warehouse");
+                System.out.println("2. Buy from Warehouse");
                 System.out.println("0 Back");
             }
         }
