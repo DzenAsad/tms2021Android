@@ -7,6 +7,9 @@ import com.examShop.handlers.ShowProductsByPrice;
 import com.examShop.model.shop.Shop;
 
 public class MenuHandlerShopProductShow extends MenuHandler implements ShowProductsByPrice, ShowProductsByAdding {
+    public MenuHandlerShopProductShow() {
+    }
+
     public MenuHandlerShopProductShow(Shop shop, ShopReader optionalReader) {
         super(shop, optionalReader);
     }
@@ -16,14 +19,16 @@ public class MenuHandlerShopProductShow extends MenuHandler implements ShowProdu
         switch (cmd) {
             case ("1"): {
                 showProductsByPrice(getShop());
+                return MenuCase.MENU_SHOP_PRODUCT_SHOW;
             }
             case ("2"): {
                 showProductsByAdding(getShop());
+                return MenuCase.MENU_SHOP_PRODUCT_SHOW;
             }
             case ("0"): {
                 return MenuCase.MENU_SHOP;
             }
-            default:{
+            default: {
                 return MenuCase.MENU_SHOP_PRODUCT_SHOW;
             }
         }

@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface EditProductInShop {
-    default void editProductInShop(Shop shop, ShopReader optionalReader){
+    default void editProductInShop(Shop shop, ShopReader optionalReader) {
         FabricControl fabricControl = new FabricControl();
         System.out.println("Enter info");
         List<String> tmpString = new LinkedList<>();

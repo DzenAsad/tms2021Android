@@ -2,8 +2,10 @@ package com.examShop.fabric;
 
 
 import com.examShop.UI.menu.MenuHUD;
+import com.examShop.UI.menu.menuLogic.MenuHandler;
 import com.examShop.UI.reader.ShopReader;
 import com.examShop.fabric.menu.FabricForMenuHUD;
+import com.examShop.fabric.menuHandler.FabricForMenuHandler;
 import com.examShop.fabric.product.FabricForProduct;
 import com.examShop.fabric.reader.FabricForShopReader;
 import com.examShop.fabric.shop.FabricForShop;
@@ -25,11 +27,22 @@ public class FabricControl {
         if (clazz == Shop.class) {
             return (Fabric<T>) new FabricForShop();
         }
-        //Shop Product
+        //Product Fabrics
         if (clazz == Product.class) {
             return (Fabric<T>) new FabricForProduct();
         }
+        //MenuHandler Fabric
+        if (clazz == MenuHandler.class) {
+            return (Fabric<T>) new FabricForMenuHandler();
+        }
 
         return null;
+    }
+
+    public enum FabricCase {
+        SHOP,
+        SHOP_READER_FROM_CONSOLE,
+        SHOP_READER_FROM_FILE,
+        MENU_HUD_CONSOLE
     }
 }

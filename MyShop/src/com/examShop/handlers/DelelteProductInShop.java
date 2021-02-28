@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface DelelteProductInShop {
-    default void deleteProductInShop(Shop shop, ShopReader optionalReader){
+    default void deleteProductInShop(Shop shop, ShopReader optionalReader) {
         FabricControl fabricControl = new FabricControl();
         System.out.println("Enter info");
         List<String> tmpString = new LinkedList<>();

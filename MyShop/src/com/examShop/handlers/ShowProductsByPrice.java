@@ -7,10 +7,10 @@ import java.util.Comparator;
 import java.util.List;
 
 public interface ShowProductsByPrice {
-    default void showProductsByPrice(Shop shop){
+    default void showProductsByPrice(Shop shop) {
         List<Product> tmpString = shop.getAllProductsInShop();
         tmpString.sort(Comparator.comparingInt(Product::getPrice));
-        for(Product product: tmpString){
+        for (Product product : tmpString) {
             System.out.println(product.toString() + " In warehouse:" + shop.getWarehouse().getCountInWarehouse(product));
         }
     }

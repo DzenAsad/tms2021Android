@@ -7,6 +7,9 @@ import com.examShop.handlers.BuyProductsFromWarehouse;
 import com.examShop.model.shop.Shop;
 
 public class MenuHandlerShopWarehouse extends MenuHandler implements AddProductsToWarehouse, BuyProductsFromWarehouse {
+    public MenuHandlerShopWarehouse() {
+    }
+
     public MenuHandlerShopWarehouse(Shop shop, ShopReader optionalReader) {
         super(shop, optionalReader);
     }
@@ -16,9 +19,11 @@ public class MenuHandlerShopWarehouse extends MenuHandler implements AddProducts
         switch (cmd) {
             case ("1"): {
                 addProductsToWarehouse(getShop(), getOptionalReader());
+                return MenuCase.MENU_SHOP_WAREHOUSE;
             }
             case ("2"): {
                 buyProductsFromWarehouse(getShop(), getOptionalReader());
+                return MenuCase.MENU_SHOP_WAREHOUSE;
             }
             case ("0"): {
                 return MenuCase.MENU_SHOP;

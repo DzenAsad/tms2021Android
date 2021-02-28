@@ -5,6 +5,9 @@ import com.examShop.UI.reader.ShopReader;
 import com.examShop.model.shop.Shop;
 
 public class MenuHandlerShop extends MenuHandler {
+    public MenuHandlerShop() {
+    }
+
     public MenuHandlerShop(Shop shop, ShopReader optionalReader) {
         super(shop, optionalReader);
     }
@@ -24,7 +27,7 @@ public class MenuHandlerShop extends MenuHandler {
             case ("0"): {
                 return MenuCase.MENU_MAIN;
             }
-            default:{
+            default: {
                 return MenuCase.MENU_SHOP;
             }
         }

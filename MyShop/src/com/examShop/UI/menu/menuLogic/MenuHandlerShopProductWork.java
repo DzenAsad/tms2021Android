@@ -8,6 +8,8 @@ import com.examShop.handlers.EditProductInShop;
 import com.examShop.model.shop.Shop;
 
 public class MenuHandlerShopProductWork extends MenuHandler implements AddProductInShop, DelelteProductInShop, EditProductInShop {
+    public MenuHandlerShopProductWork() {
+    }
 
     public MenuHandlerShopProductWork(Shop shop, ShopReader optionalReader) {
         super(shop, optionalReader);
@@ -18,17 +20,20 @@ public class MenuHandlerShopProductWork extends MenuHandler implements AddProduc
         switch (cmd) {
             case ("1"): {
                 addProductInShop(getShop(), getOptionalReader());
+                return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
             case ("2"): {
                 deleteProductInShop(getShop(), getOptionalReader());
+                return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
             case ("3"): {
                 editProductInShop(getShop(), getOptionalReader());
+                return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
             case ("0"): {
                 return MenuCase.MENU_SHOP;
             }
-            default:{
+            default: {
                 return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
         }

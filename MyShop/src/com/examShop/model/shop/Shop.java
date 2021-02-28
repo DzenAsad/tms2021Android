@@ -3,7 +3,9 @@ package com.examShop.model.shop;
 import com.examShop.model.product.Product;
 import com.examShop.model.warehouse.Warehouse;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 
 public class Shop {

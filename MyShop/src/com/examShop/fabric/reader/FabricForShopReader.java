@@ -9,28 +9,18 @@ import com.examShop.fabric.Fabric;
 public class FabricForShopReader implements Fabric<ShopReader> {
     @Override
     public ShopReader getSomeObject(String initData) {
-        if (initData.equals("ShopReaderFromConsole")){
-            return new ShopReaderFromConsole();
-        } else if (initData.equals("ShopReaderFromFile")){
-            return new ShopReaderFromFile();
-        } else {
-            return null;
+        switch (initData) {
+            case ("SHOP_READER_FROM_CONSOLE"): {
+                return new ShopReaderFromConsole();
+            }
+            case ("SHOP_READER_FROM_FILE"): {
+                return new ShopReaderFromFile();
+            }
+            default: {
+                return null;
+            }
         }
     }
 
-    public enum FabricCase{
-        CONSOLE ("ShopReaderFromConsole"),
-        FILE("ShopReaderFromFile");
-
-        private final String someCase;
-
-        FabricCase(String someCase) {
-            this.someCase = someCase;
-        }
-
-        public String getThisCase(){
-            return someCase;
-        }
-    }
 
 }

@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public interface BuyProductsFromWarehouse {
-    default void buyProductsFromWarehouse(Shop shop, ShopReader optionalReader){
+    default void buyProductsFromWarehouse(Shop shop, ShopReader optionalReader) {
         System.out.println("Enter info");
         List<String> tmpString = new LinkedList<>();
         try {
@@ -17,11 +17,11 @@ public interface BuyProductsFromWarehouse {
         } catch (IOException e) {
             System.err.println("No info entered");
         }
-        for (String string: tmpString){
+        for (String string : tmpString) {
             String[] formattedData = string.split("\\W+");
             Product product = shop.getProducts().get(Integer.parseInt(formattedData[0]));
             int count = Integer.parseInt(formattedData[1]);
-            if (product  != null){
+            if (product != null) {
                 shop.getWarehouse().editProductCountInWarehouse(product, -count);
             }
         }

@@ -6,6 +6,8 @@ import com.examShop.model.shop.Shop;
 
 public class MenuHandlerMain extends MenuHandler {
 
+    public MenuHandlerMain() {
+    }
 
     public MenuHandlerMain(Shop shop, ShopReader optionalReader) {
         super(shop, optionalReader);
@@ -26,7 +28,7 @@ public class MenuHandlerMain extends MenuHandler {
             case ("0"): {
                 return MenuCase.EXIT;
             }
-            default:{
+            default: {
                 return MenuCase.MENU_MAIN;
             }
         }

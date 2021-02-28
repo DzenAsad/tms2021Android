@@ -5,6 +5,9 @@ import com.examShop.UI.reader.ShopReader;
 import com.examShop.model.shop.Shop;
 
 public class MenuHandlerBookkeeping extends MenuHandler {
+    public MenuHandlerBookkeeping() {
+    }
+
     public MenuHandlerBookkeeping(Shop shop, ShopReader optionalReader) {
         super(shop, optionalReader);
     }

@@ -6,7 +6,10 @@ import com.examShop.model.shop.Shop;
 
 public abstract class MenuHandler {
     private Shop shop;
-    protected ShopReader optionalReader;
+    private ShopReader optionalReader;
+
+    public MenuHandler() {
+    }
 
     public MenuHandler(Shop shop, ShopReader optionalReader) {
         this.shop = shop;
@@ -19,6 +22,14 @@ public abstract class MenuHandler {
 
     public ShopReader getOptionalReader() {
         return optionalReader;
+    }
+
+    public void setOptionalReader(ShopReader optionalReader) {
+        this.optionalReader = optionalReader;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
     abstract public MenuCase casesSwitch(String cmd);
