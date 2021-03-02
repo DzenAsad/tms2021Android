@@ -15,7 +15,7 @@ public class Shop {
     private final Warehouse warehouse = new Warehouse();
 
     public void addProductInShop(Product product) throws ShopAlreadyHaveProductException {
-        if (products.containsKey(product.getID())){
+        if (products.containsKey(product.getID())) {
             throw new ShopAlreadyHaveProductException(product);
         }
         products.put(product.getID(), product);
@@ -25,24 +25,40 @@ public class Shop {
         return new ArrayList<>(products.values());
     }
 
-    public void deleteProductInShop(int id) {
+    public void deleteProductInShop(int id) throws ShopNotHaveProductException {
+        checkProduct(id);
         products.remove(id);
     }
 
-    public void editProductInShop(Product product) {
+    public void editProductInShop(Product product) throws ShopNotHaveProductException {
+        checkProduct(product.getID());
         products.put(product.getID(), product);
     }
 
     public Product getProducts(int id) throws ShopNotHaveProductException {
-        Product tmp = products.get(id);
-        if (tmp != null){
-            return tmp;
-        } else {
-            throw new ShopNotHaveProductException(id);
-        }
+        checkProduct(id);
+        return products.get(id);
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
+    public void addProductInWarehouse(Product product, int count) {
+        warehouse.addProduct(product, count);
+    }
+
+    public void removeProductFromWarehouse(Product product){
+        warehouse.removeProduct(product);
+    }
+
+    public void editProductCountInWarehouse(Product product, int count){
+        editProductCountInWarehouse(product, -count);
+    }
+
+    public int getCountInWarehouse(Product product){
+        return warehouse.getCount(product);
+    }
+
+    private void checkProduct(int id) throws ShopNotHaveProductException {
+        if (products.get(id) == null) {
+            throw new ShopNotHaveProductException(id);
+        }
     }
 }

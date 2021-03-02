@@ -20,7 +20,7 @@ public interface AddProductsToWarehouse {
                 try {
                     Product product = shop.getProducts(Integer.parseInt(formattedData[0]));
                     int count = Integer.parseInt(formattedData[1]);
-                    shop.getWarehouse().addProductInWarehouse(product, count);
+                    shop.addProductInWarehouse(product, count);
                 } catch (NumberFormatException e) {
                     throw new WarehouseWrongInitDataException(initData);
                 }

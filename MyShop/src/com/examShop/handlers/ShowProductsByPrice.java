@@ -11,7 +11,7 @@ public interface ShowProductsByPrice {
         List<Product> tmpString = shop.getAllProductsInShop();
         tmpString.sort(Comparator.comparingInt(Product::getPrice));
         for (Product product : tmpString) {
-            System.out.println(product.toString() + " In warehouse:" + shop.getWarehouse().getCountInWarehouse(product));
+            System.out.println(product.toString() + " In warehouse:" + shop.getCountInWarehouse(product));
         }
     }
 }

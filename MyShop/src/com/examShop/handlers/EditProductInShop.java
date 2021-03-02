@@ -1,6 +1,7 @@
 package com.examShop.handlers;
 
 import com.examShop.UI.reader.ShopReader;
+import com.examShop.exceptions.Shop.ShopNotHaveProductException;
 import com.examShop.fabric.FabricControl;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
@@ -16,6 +17,8 @@ public interface EditProductInShop {
             }
         } catch (IOException e) {
             System.err.println("No info entered");
+        } catch (ShopNotHaveProductException e) {
+            System.err.println("Edit product fail!");
         }
     }
 }

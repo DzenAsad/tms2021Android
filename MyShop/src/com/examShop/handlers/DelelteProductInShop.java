@@ -11,13 +11,13 @@ public interface DelelteProductInShop {
         System.out.println("Enter info");
         try {
             for (String string : optionalReader.someRead()) {
-                shop.getWarehouse().removeProductFromWarehouse(shop.getProducts(Integer.parseInt(string)));
+                shop.removeProductFromWarehouse(shop.getProducts(Integer.parseInt(string)));
                 shop.deleteProductInShop(Integer.parseInt(string));
             }
         } catch (IOException e) {
             System.err.println("No info entered");
         } catch (ShopNotHaveProductException e) {
-            System.err.println("Add product fail!");
+            System.err.println("Delete product fail!");
         }
 
     }
