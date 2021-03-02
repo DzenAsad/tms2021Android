@@ -1,8 +1,8 @@
 package com.examShop.handlers;
 
 import com.examShop.UI.reader.ShopReader;
-import com.examShop.exceptions.Product.ProductWrongInitDataException;
 import com.examShop.exceptions.Shop.ShopNotHaveProductException;
+import com.examShop.exceptions.Warehouse.WarehouseWrongInitDataException;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
@@ -15,16 +15,19 @@ public interface AddProductsToWarehouse {
             for (String initData : optionalReader.someRead()) {
                 String[] formattedData = initData.split("\\W+");
                 if (formattedData.length != 2) {
-                    throw new ProductWrongInitDataException(initData);
+                    throw new WarehouseWrongInitDataException(initData);
                 }
-                Product product = shop.getProducts(Integer.parseInt(formattedData[0]));
-                int count = Integer.parseInt(formattedData[1]);
+                try {
+                    Product product = shop.getProducts(Integer.parseInt(formattedData[0]));
+                    int count = Integer.parseInt(formattedData[1]);
                     shop.getWarehouse().addProductInWarehouse(product, count);
-
+                } catch (NumberFormatException e) {
+                    throw new WarehouseWrongInitDataException(initData);
+                }
             }
         } catch (IOException e) {
             System.err.println("No info entered");
-        } catch (ShopNotHaveProductException e) {
+        } catch (ShopNotHaveProductException | WarehouseWrongInitDataException e) {
             System.err.println("Add product fail!");
         }
     }
