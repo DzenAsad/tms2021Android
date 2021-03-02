@@ -1,5 +1,6 @@
 package com.examShop.model.product;
 
+
 public class Product {
     private final int ID;
     private String name;

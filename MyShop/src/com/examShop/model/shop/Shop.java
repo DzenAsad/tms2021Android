@@ -1,5 +1,6 @@
 package com.examShop.model.shop;
 
+import com.examShop.exceptions.Shop.ShopAlreadyHaveProduct;
 import com.examShop.model.product.Product;
 import com.examShop.model.warehouse.Warehouse;
 
@@ -12,8 +13,10 @@ public class Shop {
     private final LinkedHashMap<Integer, Product> products = new LinkedHashMap<>();
     private final Warehouse warehouse = new Warehouse();
 
-    public void addProductInShop(Product product) {
-
+    public void addProductInShop(Product product) throws ShopAlreadyHaveProduct {
+        if (products.containsKey(product.getID())){
+            throw new ShopAlreadyHaveProduct(product);
+        }
         products.put(product.getID(), product);
     }
 
