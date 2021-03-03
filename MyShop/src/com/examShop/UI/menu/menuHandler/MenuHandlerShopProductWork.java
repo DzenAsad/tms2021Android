@@ -44,8 +44,9 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     private void addProductInShop(Shop shop, ShopReader optionalReader) {
         try {
             for (String initData : optionalReader.someRead()) {
-                // TODO: 03.03.2021 return boolean, need info
-                shop.addProductInShop((FabricControl.getRequiredFabric(Product.class)).getSomeObject(initData));
+                if (!shop.addProductInShop((FabricControl.getRequiredFabric(Product.class)).getSomeObject(initData))){
+                    errLogicMsg(initData);
+                }
             }
         } catch (IOException e) {
             System.err.println("No info entered");
@@ -55,12 +56,13 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     }
 
     private void deleteProductInShop(Shop shop, ShopReader optionalReader) {
-        System.out.println("Enter info");
         try {
-            for (String string : optionalReader.someRead()) {
-                shop.removeProductFromWarehouse(shop.getProduct(Integer.parseInt(string)));
-                // TODO: 03.03.2021 add, boolean about success meth
-                shop.deleteProductInShop(Integer.parseInt(string));
+            for (String initData : optionalReader.someRead()) {
+                if (!shop.deleteProductInShop(Integer.parseInt(initData))){
+                    errLogicMsg(initData);
+                    continue;
+                }
+                shop.removeProductFromWarehouse(shop.getProduct(Integer.parseInt(initData)));
             }
         } catch (IOException e) {
             System.err.println("No info entered");
@@ -68,11 +70,11 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     }
 
     private void editProductInShop(Shop shop, ShopReader optionalReader) {
-        System.out.println("Enter info");
         try {
-            for (String string : optionalReader.someRead()) {
-                // TODO: 03.03.2021 add, boolean about success meth
-                shop.editProductInShop(FabricControl.getRequiredFabric(Product.class).getSomeObject(string));
+            for (String initData : optionalReader.someRead()) {
+                if (!shop.editProductInShop(FabricControl.getRequiredFabric(Product.class).getSomeObject(initData))){
+                    errLogicMsg(initData);
+                }
             }
         } catch (IOException e) {
             System.err.println("No info entered");

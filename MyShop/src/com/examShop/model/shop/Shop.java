@@ -30,9 +30,11 @@ public class Shop {
     }
 
     public boolean editProductInShop(Product product) {
-        products.put(product.getID(), product);
-        removeProductFromWarehouse(product);
-        return checkProduct(product.getID());
+        boolean flag = checkProduct(product.getID());
+        if (flag) {
+            products.put(product.getID(), product);
+        }
+        return flag;
     }
 
     public Product getProduct(int id) {

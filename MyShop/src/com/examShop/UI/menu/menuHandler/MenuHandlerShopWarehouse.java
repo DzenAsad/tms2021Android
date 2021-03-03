@@ -51,7 +51,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
             }
         } catch (IOException e) {
             System.err.println("No info entered");
-        } catch (ShopNotHaveProductException | WarehouseWrongInitDataException e) {
+        } catch (WarehouseWrongInitDataException e) {
             System.err.println("Add product fail!");
         }
     }
@@ -74,7 +74,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
             }
         } catch (IOException e) {
             System.err.println("No info entered");
-        } catch (ShopNotHaveProductException | WarehouseWrongInitDataException e) {
+        } catch (WarehouseWrongInitDataException e) {
             System.err.println("Add product fail!");
         }
 

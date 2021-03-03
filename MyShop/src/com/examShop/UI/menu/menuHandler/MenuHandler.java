@@ -11,8 +11,14 @@ public abstract class MenuHandler {
     public MenuHandler() {
     }
 
+    abstract public MenuCase casesSwitch(String cmd);
+
     public Shop getShop() {
         return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
     public ShopReader getOptionalReader() {
@@ -23,9 +29,7 @@ public abstract class MenuHandler {
         this.optionalReader = optionalReader;
     }
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
+    void errLogicMsg(String string){
+        System.err.println("Err: \"" + string + "\"");
     }
-
-    abstract public MenuCase casesSwitch(String cmd);
 }
