@@ -9,8 +9,10 @@ import com.examShop.fabric.menuHandler.FabricForMenuHandler;
 import com.examShop.fabric.product.FabricForProduct;
 import com.examShop.fabric.reader.FabricForShopReader;
 import com.examShop.fabric.shop.FabricForShop;
+import com.examShop.fabric.warehouse.FabricForWarehouse;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
+import com.examShop.model.warehouse.Warehouse;
 
 public class FabricControl {
 
@@ -34,6 +36,10 @@ public class FabricControl {
         //MenuHandler Fabric
         if (clazz == MenuHandler.class) {
             return (Fabric<T>) new FabricForMenuHandler();
+        }
+        //Warehouse Fabric
+        if (clazz == Warehouse.class) {
+            return (Fabric<T>) new FabricForWarehouse();
         }
 
         return null;
