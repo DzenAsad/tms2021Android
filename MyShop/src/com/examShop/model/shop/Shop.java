@@ -8,12 +8,14 @@ import com.examShop.model.warehouse.Warehouse;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class Shop {
     private final LinkedHashMap<Integer, Product> products = new LinkedHashMap<>();
     private final Warehouse warehouse = FabricControl.getRequiredFabric(Warehouse.class).getSomeObject(FabricCase.WAREHOUSE.toString());
+    private List<String> purchasesLog = new LinkedList<>();
 
     public boolean addProductInShop(Product product) {
         if (products.containsKey(product.getID())) {
@@ -41,7 +43,8 @@ public class Shop {
     }
 
     public Product getProduct(int id) {
-        if(!checkProduct(id)) {throw new ShopNullProductException(id);
+        if (!checkProduct(id)) {
+            throw new ShopNullProductException(id);
         }
         return products.get(id);
     }
@@ -55,7 +58,13 @@ public class Shop {
     }
 
     public boolean buyProductFromWarehouse(Product product, int count) {
-        return warehouse.editProductCount(product, -count);
+        String tmp = product.toString() + " Quantity:" + count + " Money:" + count*product.getPrice();
+        if(warehouse.editProductCount(product, -count)){
+            purchasesLog.add(tmp);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int getCountInWarehouse(Product product) {

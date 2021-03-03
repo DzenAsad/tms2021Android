@@ -8,6 +8,7 @@ import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MenuHandlerShopWarehouse extends MenuHandler {
     public MenuHandlerShopWarehouse() {
@@ -24,7 +25,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
             }
             case ("2"): {
                 System.out.println("Enter info \"id_count\"");
-                buyProductsFromWarehouse(getShop(), getOptionalReader());
+                System.out.println(buyProductsFromWarehouse(getShop(), getOptionalReader()));
                 return MenuCase.MENU_SHOP_WAREHOUSE;
             }
             case ("0"): {
@@ -54,7 +55,9 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
         }
     }
 
-    private void buyProductsFromWarehouse(Shop shop, ShopReader optionalReader) {
+    private String buyProductsFromWarehouse(Shop shop, ShopReader optionalReader) {
+        int quantity = 0;
+        int money = 0;
         try {
             for (String initData : optionalReader.someRead()) {
                 String[] formattedData = initData.split("\\W+");
@@ -63,12 +66,16 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
                 }
                 Product product = shop.getProduct(Integer.parseInt(formattedData[0]));
                 int count = Integer.parseInt(formattedData[1]);
-                shop.buyProductFromWarehouse(product, count);
+                if (shop.buyProductFromWarehouse(product, count)) {
+                    quantity += count;
+                    money += count * product.getPrice();
+                }
             }
         } catch (IOException e) {
             System.err.println("No info entered");
         } catch (WarehouseWrongInitDataException | ShopNullProductException e) {
             System.err.println(" Buy product fail!");
         }
+        return "Bought:" + quantity + " Money:" + money;
     }
 }
