@@ -12,6 +12,14 @@ public class MenuHandlerBookkeeping extends MenuHandler {
     @Override
     public MenuCase casesSwitch(String cmd) {
         switch (cmd) {
+            case ("1"): {
+            }
+            case ("2"): {
+            }
+            case ("3"): {
+            }
+            case ("4"): {
+            }
             case ("0"): {
                 return MenuCase.MENU_MAIN;
             }
@@ -21,3 +29,4 @@ public class MenuHandlerBookkeeping extends MenuHandler {
         }
     }
 }
+

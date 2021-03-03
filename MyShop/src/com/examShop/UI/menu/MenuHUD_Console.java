@@ -12,8 +12,8 @@ public class MenuHUD_Console extends MenuHUD {
                 System.out.println("0. Exit");
             }
             case MENU_SHOP -> {
-                System.out.println("1. Work with products");
-                System.out.println("2. Show products");
+                System.out.println("1. Work with Products");
+                System.out.println("2. Show Products");
                 System.out.println("3. Warehouse");
                 System.out.println("0 Back");
             }
@@ -29,6 +29,10 @@ public class MenuHUD_Console extends MenuHUD {
                 System.out.println("0 Back");
             }
             case MENU_BOOKKEEPING -> {
+                System.out.println("1. Number of Product types");
+                System.out.println("2. Number of Products");
+                System.out.println("3. Average price of Products");
+                System.out.println("4. Average price of Products by types");
                 System.out.println("0 Back");
             }
             case MENU_OPTION_READER -> {
