@@ -51,7 +51,7 @@ public class MenuHandlerShopProductWork extends MenuHandler {
         } catch (IOException e) {
             System.err.println("No info entered");
         } catch (ProductWrongInitDataException e) {
-            System.err.println("Add fail!");
+            System.err.println(" Add fail!");
         }
     }
 
@@ -66,7 +66,9 @@ public class MenuHandlerShopProductWork extends MenuHandler {
             }
         } catch (IOException e) {
             System.err.println("No info entered");
-        }
+        } catch (NumberFormatException e) {
+        System.err.println("Wrong info.");
+    }
     }
 
     private void editProductInShop(Shop shop, ShopReader optionalReader) {
@@ -79,7 +81,7 @@ public class MenuHandlerShopProductWork extends MenuHandler {
         } catch (IOException e) {
             System.err.println("No info entered");
         } catch (ProductWrongInitDataException e) {
-            System.err.println("Edit fail!");
+            System.err.println(" Edit fail!");
         }
     }
 }

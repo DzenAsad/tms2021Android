@@ -1,5 +1,6 @@
 package com.examShop.model.shop;
 
+import com.examShop.exceptions.Shop.ShopNullProductException;
 import com.examShop.model.product.Product;
 import com.examShop.model.warehouse.Warehouse;
 
@@ -38,6 +39,8 @@ public class Shop {
     }
 
     public Product getProduct(int id) {
+        if(!checkProduct(id)) {throw new ShopNullProductException(id);
+        }
         return products.get(id);
     }
 
