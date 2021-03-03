@@ -2,7 +2,7 @@ package com.examShop;
 
 import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.menu.MenuHUD;
-import com.examShop.UI.menu.menuLogic.MenuHandler;
+import com.examShop.UI.menu.menuHandler.MenuHandler;
 import com.examShop.UI.reader.ShopReader;
 import com.examShop.fabric.FabricCase;
 import com.examShop.fabric.FabricControl;

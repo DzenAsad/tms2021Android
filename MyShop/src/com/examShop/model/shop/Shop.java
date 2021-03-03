@@ -2,6 +2,7 @@ package com.examShop.model.shop;
 
 import com.examShop.exceptions.Shop.ShopAlreadyHaveProductException;
 import com.examShop.exceptions.Shop.ShopNotHaveProductException;
+import com.examShop.exceptions.Warehouse.WarehouseNotHaveProductIdException;
 import com.examShop.model.product.Product;
 import com.examShop.model.warehouse.Warehouse;
 
@@ -35,7 +36,7 @@ public class Shop {
         products.put(product.getID(), product);
     }
 
-    public Product getProducts(int id) throws ShopNotHaveProductException {
+    public Product getProduct(int id) throws ShopNotHaveProductException {
         checkProduct(id);
         return products.get(id);
     }
@@ -44,15 +45,15 @@ public class Shop {
         warehouse.addProduct(product, count);
     }
 
-    public void removeProductFromWarehouse(Product product){
+    public void removeProductFromWarehouse(Product product) {
         warehouse.removeProduct(product);
     }
 
-    public void editProductCountInWarehouse(Product product, int count){
+    public void editProductCountInWarehouse(Product product, int count) {
         editProductCountInWarehouse(product, -count);
     }
 
-    public int getCountInWarehouse(Product product){
+    public int getCountInWarehouse(Product product) {
         return warehouse.getCount(product);
     }
 

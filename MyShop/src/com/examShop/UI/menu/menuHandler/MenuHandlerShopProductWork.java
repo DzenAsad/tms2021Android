@@ -1,4 +1,4 @@
-package com.examShop.UI.menu.menuLogic;
+package com.examShop.UI.menu.menuHandler;
 
 import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.reader.ShopReader;

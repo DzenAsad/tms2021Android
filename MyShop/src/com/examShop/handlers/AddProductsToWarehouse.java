@@ -18,7 +18,7 @@ public interface AddProductsToWarehouse {
                     throw new WarehouseWrongInitDataException(initData);
                 }
                 try {
-                    Product product = shop.getProducts(Integer.parseInt(formattedData[0]));
+                    Product product = shop.getProduct(Integer.parseInt(formattedData[0]));
                     int count = Integer.parseInt(formattedData[1]);
                     shop.addProductInWarehouse(product, count);
                 } catch (NumberFormatException e) {

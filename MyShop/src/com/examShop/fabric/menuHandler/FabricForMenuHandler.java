@@ -1,7 +1,7 @@
 package com.examShop.fabric.menuHandler;
 
 import com.examShop.UI.menu.MenuCase;
-import com.examShop.UI.menu.menuLogic.*;
+import com.examShop.UI.menu.menuHandler.*;
 import com.examShop.fabric.Fabric;
 
 public class FabricForMenuHandler implements Fabric<MenuHandler> {

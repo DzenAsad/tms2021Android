@@ -11,7 +11,7 @@ public interface DelelteProductInShop {
         System.out.println("Enter info");
         try {
             for (String string : optionalReader.someRead()) {
-                shop.removeProductFromWarehouse(shop.getProducts(Integer.parseInt(string)));
+                shop.removeProductFromWarehouse(shop.getProduct(Integer.parseInt(string)));
                 shop.deleteProductInShop(Integer.parseInt(string));
             }
         } catch (IOException e) {
