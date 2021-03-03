@@ -1,6 +1,5 @@
 package com.examShop.model.shop;
 
-import com.examShop.exceptions.Shop.ShopNotHaveProductException;
 import com.examShop.model.product.Product;
 import com.examShop.model.warehouse.Warehouse;
 
@@ -25,18 +24,18 @@ public class Shop {
         return new ArrayList<>(products.values());
     }
 
-    public boolean deleteProductInShop(int id) throws ShopNotHaveProductException {
+    public boolean deleteProductInShop(int id) {
         products.remove(id);
         return checkProduct(id);
     }
 
-    public boolean editProductInShop(Product product) throws ShopNotHaveProductException {
+    public boolean editProductInShop(Product product) {
         products.put(product.getID(), product);
         removeProductFromWarehouse(product);
         return checkProduct(product.getID());
     }
 
-    public Product getProduct(int id) throws ShopNotHaveProductException {
+    public Product getProduct(int id) {
         return products.get(id);
     }
 

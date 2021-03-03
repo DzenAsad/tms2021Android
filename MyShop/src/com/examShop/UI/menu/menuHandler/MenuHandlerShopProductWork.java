@@ -3,7 +3,6 @@ package com.examShop.UI.menu.menuHandler;
 import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.reader.ShopReader;
 import com.examShop.exceptions.Product.ProductWrongInitDataException;
-import com.examShop.exceptions.Shop.ShopNotHaveProductException;
 import com.examShop.fabric.FabricControl;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
@@ -19,14 +18,17 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     public MenuCase casesSwitch(String cmd) {
         switch (cmd) {
             case ("1"): {
+                System.out.println("Enter info \"id_name_price\"");
                 addProductInShop(getShop(), getOptionalReader());
                 return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
             case ("2"): {
+                System.out.println("Enter info \"id\"");
                 deleteProductInShop(getShop(), getOptionalReader());
                 return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
             case ("3"): {
+                System.out.println("Enter info \"id_name_price\"");
                 editProductInShop(getShop(), getOptionalReader());
                 return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
@@ -40,16 +42,15 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     }
 
     private void addProductInShop(Shop shop, ShopReader optionalReader) {
-//        System.out.println("Enter info {id Name price}");
         try {
             for (String initData : optionalReader.someRead()) {
                 // TODO: 03.03.2021 return boolean, need info
                 shop.addProductInShop((FabricControl.getRequiredFabric(Product.class)).getSomeObject(initData));
             }
-        } catch (ProductWrongInitDataException e) {
-            System.err.println("AddProductInShop fail!");
         } catch (IOException e) {
             System.err.println("No info entered");
+        } catch (ProductWrongInitDataException e) {
+            System.err.println("Add fail!");
         }
     }
 
@@ -63,10 +64,7 @@ public class MenuHandlerShopProductWork extends MenuHandler {
             }
         } catch (IOException e) {
             System.err.println("No info entered");
-        } catch (ShopNotHaveProductException e) {
-            System.err.println("Delete product fail!");
         }
-
     }
 
     private void editProductInShop(Shop shop, ShopReader optionalReader) {
@@ -78,8 +76,8 @@ public class MenuHandlerShopProductWork extends MenuHandler {
             }
         } catch (IOException e) {
             System.err.println("No info entered");
-        } catch (ProductWrongInitDataException | ShopNotHaveProductException e) {
-            System.err.println("Edit product fail!");
+        } catch (ProductWrongInitDataException e) {
+            System.err.println("Edit fail!");
         }
     }
 }
