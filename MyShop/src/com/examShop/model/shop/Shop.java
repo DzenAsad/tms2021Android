@@ -6,16 +6,13 @@ import com.examShop.fabric.FabricControl;
 import com.examShop.model.product.Product;
 import com.examShop.model.warehouse.Warehouse;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class Shop {
     private final LinkedHashMap<Integer, Product> products = new LinkedHashMap<>();
     private final Warehouse warehouse = FabricControl.getRequiredFabric(Warehouse.class).getSomeObject(FabricCase.WAREHOUSE.toString());
-    private List<String> purchasesLog = new LinkedList<>();
+    private final List<String> purchasesLog = new LinkedList<>();
 
     public boolean addProductInShop(Product product) {
         if (products.containsKey(product.getID())) {
@@ -58,8 +55,8 @@ public class Shop {
     }
 
     public boolean buyProductFromWarehouse(Product product, int count) {
-        String tmp = product.toString() + " Quantity:" + count + " Money:" + count*product.getPrice();
-        if(warehouse.editProductCount(product, -count)){
+        String tmp = product.toString() + " Quantity:" + count + " Money:" + count * product.getPrice();
+        if (warehouse.editProductCount(product, -count)) {
             purchasesLog.add(tmp);
             return true;
         } else {
@@ -70,6 +67,27 @@ public class Shop {
     public int getCountInWarehouse(Product product) {
         return warehouse.getCount(product);
     }
+
+    public int getCountProductsInShop() {
+        return products.size();
+    }
+
+    public int getCountProductsTypeInShop() {
+        Set<String> tmp = new HashSet<>();
+        for (Product product : products.values()) {
+            tmp.add(product.getType());
+        }
+        return tmp.size();
+    }
+
+    public int getAveragedCostProducts() {
+        int tmp = 0;
+        for (Product product : products.values()) {
+            tmp += product.getPrice();
+        }
+        return tmp / products.size();
+    }
+
 
     private boolean checkProduct(int id) {
         return products.containsKey(id);
