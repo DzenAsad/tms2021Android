@@ -1,8 +1,6 @@
 package com.examShop.model.shop;
 
-import com.examShop.exceptions.Shop.ShopAlreadyHaveProductException;
 import com.examShop.exceptions.Shop.ShopNotHaveProductException;
-import com.examShop.exceptions.Warehouse.WarehouseNotHaveProductIdException;
 import com.examShop.model.product.Product;
 import com.examShop.model.warehouse.Warehouse;
 
@@ -15,29 +13,30 @@ public class Shop {
     private final LinkedHashMap<Integer, Product> products = new LinkedHashMap<>();
     private final Warehouse warehouse = new Warehouse();
 
-    public void addProductInShop(Product product) throws ShopAlreadyHaveProductException {
+    public boolean addProductInShop(Product product) {
         if (products.containsKey(product.getID())) {
-            throw new ShopAlreadyHaveProductException(product);
+            return false;
         }
         products.put(product.getID(), product);
+        return true;
     }
 
     public List<Product> getAllProductsInShop() {
         return new ArrayList<>(products.values());
     }
 
-    public void deleteProductInShop(int id) throws ShopNotHaveProductException {
-        checkProduct(id);
+    public boolean deleteProductInShop(int id) throws ShopNotHaveProductException {
         products.remove(id);
+        return checkProduct(id);
     }
 
-    public void editProductInShop(Product product) throws ShopNotHaveProductException {
-        checkProduct(product.getID());
+    public boolean editProductInShop(Product product) throws ShopNotHaveProductException {
         products.put(product.getID(), product);
+        removeProductFromWarehouse(product);
+        return checkProduct(product.getID());
     }
 
     public Product getProduct(int id) throws ShopNotHaveProductException {
-        checkProduct(id);
         return products.get(id);
     }
 
@@ -49,17 +48,15 @@ public class Shop {
         warehouse.removeProduct(product);
     }
 
-    public void editProductCountInWarehouse(Product product, int count) {
-        editProductCountInWarehouse(product, -count);
+    public boolean buyProductFromWarehouse(Product product, int count) {
+        return warehouse.editProductCount(product, -count);
     }
 
     public int getCountInWarehouse(Product product) {
         return warehouse.getCount(product);
     }
 
-    private void checkProduct(int id) throws ShopNotHaveProductException {
-        if (products.get(id) == null) {
-            throw new ShopNotHaveProductException(id);
-        }
+    private boolean checkProduct(int id) {
+        return products.containsKey(id);
     }
 }

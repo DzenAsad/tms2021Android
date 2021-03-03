@@ -1,7 +1,10 @@
 package com.examShop.exceptions.Warehouse;
 
-public class WarehouseWrongInitDataException extends Exception {
+import com.examShop.exceptions.WrongInitDataException;
+
+public class WarehouseWrongInitDataException extends WrongInitDataException {
     public WarehouseWrongInitDataException(String errString) {
-        System.err.print(" Wrong info \"" + errString + "\". Need like \"id_count\".");
+        super(errString);
+        System.err.print(" Need like \"id_count\".\" ");
     }
 }

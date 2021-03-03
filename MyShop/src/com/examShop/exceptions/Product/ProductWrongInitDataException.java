@@ -1,7 +1,10 @@
 package com.examShop.exceptions.Product;
 
-public class ProductWrongInitDataException extends NullPointerException {
+import com.examShop.exceptions.WrongInitDataException;
+
+public class ProductWrongInitDataException extends WrongInitDataException {
     public ProductWrongInitDataException(String errString) {
-        System.err.print(" Wrong info \"" + errString + "\". Need like \"id_name_price\".");
+        super(errString);
+        System.err.print("\" Need like \"id_name_price\".");
     }
 }

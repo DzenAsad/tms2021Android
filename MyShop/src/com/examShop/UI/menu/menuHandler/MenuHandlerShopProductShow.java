@@ -2,11 +2,13 @@ package com.examShop.UI.menu.menuHandler;
 
 import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.reader.ShopReader;
-import com.examShop.handlers.ShowProductsByAdding;
-import com.examShop.handlers.ShowProductsByPrice;
+import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
-public class MenuHandlerShopProductShow extends MenuHandler implements ShowProductsByPrice, ShowProductsByAdding {
+import java.util.Comparator;
+import java.util.List;
+
+public class MenuHandlerShopProductShow extends MenuHandler {
     public MenuHandlerShopProductShow() {
     }
 
@@ -31,6 +33,20 @@ public class MenuHandlerShopProductShow extends MenuHandler implements ShowProdu
             default: {
                 return MenuCase.MENU_SHOP_PRODUCT_SHOW;
             }
+        }
+    }
+
+    private void showProductsByAdding(Shop shop) {
+        for (Product product : shop.getAllProductsInShop()) {
+            System.out.println(product.toString() + " In warehouse:" + shop.getCountInWarehouse(product));
+        }
+    }
+
+    private void showProductsByPrice(Shop shop) {
+        List<Product> tmpString = shop.getAllProductsInShop();
+        tmpString.sort(Comparator.comparingInt(Product::getPrice));
+        for (Product product : tmpString) {
+            System.out.println(product.toString() + " In warehouse:" + shop.getCountInWarehouse(product));
         }
     }
 }

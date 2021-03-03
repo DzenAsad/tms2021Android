@@ -1,6 +1,5 @@
 package com.examShop.model.warehouse;
 
-import com.examShop.exceptions.Warehouse.WarehouseNotHaveProductIdException;
 import com.examShop.model.product.Product;
 
 import java.util.HashMap;
@@ -9,7 +8,7 @@ public class Warehouse {
     private final HashMap<Integer, Integer> stock = new HashMap<>();
 
     public void addProduct(Product product, int count) {
-        if (stock.get(product.getID()) != null) {
+        if (checkWarehouse(product.getID())) {
             editProductCount(product, count);
         } else {
             stock.put(product.getID(), count);
@@ -20,11 +19,13 @@ public class Warehouse {
         stock.remove(product.getID());
     }
 
-    public void editProductCount(Product product, int count) {
+    public boolean editProductCount(Product product, int count) {
         int curCount = stock.get(product.getID());
         if (curCount + count >= 0) {
-            stock.replace(product.getID(), curCount + count);
+            stock.put(product.getID(), curCount + count);
+            return true;
         }
+        return false;
     }
 
     public int getCount(Product product) {
@@ -34,9 +35,7 @@ public class Warehouse {
         return 0;
     }
 
-    private void checkProduct(int id) throws WarehouseNotHaveProductIdException {
-        if (stock.get(id) == null) {
-            throw new WarehouseNotHaveProductIdException(id);
-        }
+    private boolean checkWarehouse(int id){
+        return stock.containsKey(id);
     }
 }
