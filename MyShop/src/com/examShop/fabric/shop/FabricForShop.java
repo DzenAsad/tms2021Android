@@ -17,5 +17,4 @@ public class FabricForShop implements Fabric<Shop> {
             }
         }
     }
-
 }

@@ -10,12 +10,12 @@ public class FabricForProduct implements Fabric<Product> {
     public Product getSomeObject(String initData) {
         String[] formattedData = initData.split("\\W+");
         //Check length our data
-        if (formattedData.length != 3) {
+        if (formattedData.length != 4) {
             throw new ProductWrongInitDataException(initData);
         }
         //Try make Product
         try {
-            return new Product(Integer.parseInt(formattedData[0]), formattedData[1], Integer.parseInt(formattedData[2]));
+            return new Product(Integer.parseInt(formattedData[0]), formattedData[1], formattedData[2], Integer.parseInt(formattedData[3]));
         } catch (NumberFormatException e) {
             throw new ProductWrongInitDataException(initData);
         }

@@ -18,7 +18,7 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     public MenuCase casesSwitch(String cmd) {
         switch (cmd) {
             case ("1"): {
-                System.out.println("Enter info \"id_name_price\"");
+                System.out.println("Enter info \"id_name_type_price\"");
                 addProductInShop(getShop(), getOptionalReader());
                 return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
@@ -28,7 +28,7 @@ public class MenuHandlerShopProductWork extends MenuHandler {
                 return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
             case ("3"): {
-                System.out.println("Enter info \"id_name_price\"");
+                System.out.println("Enter info \"id_name_type_price\"");
                 editProductInShop(getShop(), getOptionalReader());
                 return MenuCase.MENU_SHOP_PRODUCT_WORK;
             }
