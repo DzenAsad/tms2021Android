@@ -10,9 +10,6 @@ public class MenuHandlerOptionReader extends MenuHandler {
     public MenuHandlerOptionReader() {
     }
 
-    public MenuHandlerOptionReader(Shop shop, ShopReader optionalReader) {
-        super(shop, optionalReader);
-    }
 
     @Override
     public MenuCase casesSwitch(String cmd) {

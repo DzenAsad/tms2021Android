@@ -14,9 +14,6 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     public MenuHandlerShopProductWork() {
     }
 
-    public MenuHandlerShopProductWork(Shop shop, ShopReader optionalReader) {
-        super(shop, optionalReader);
-    }
 
     @Override
     public MenuCase casesSwitch(String cmd) {

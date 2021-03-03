@@ -9,9 +9,6 @@ public class MenuHandlerMain extends MenuHandler {
     public MenuHandlerMain() {
     }
 
-    public MenuHandlerMain(Shop shop, ShopReader optionalReader) {
-        super(shop, optionalReader);
-    }
 
     @Override
     public MenuCase casesSwitch(String cmd) {

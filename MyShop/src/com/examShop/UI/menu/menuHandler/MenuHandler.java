@@ -11,11 +11,6 @@ public abstract class MenuHandler {
     public MenuHandler() {
     }
 
-    public MenuHandler(Shop shop, ShopReader optionalReader) {
-        this.shop = shop;
-        this.optionalReader = optionalReader;
-    }
-
     public Shop getShop() {
         return shop;
     }

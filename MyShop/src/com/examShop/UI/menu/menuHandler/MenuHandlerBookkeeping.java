@@ -8,9 +8,6 @@ public class MenuHandlerBookkeeping extends MenuHandler {
     public MenuHandlerBookkeeping() {
     }
 
-    public MenuHandlerBookkeeping(Shop shop, ShopReader optionalReader) {
-        super(shop, optionalReader);
-    }
 
     @Override
     public MenuCase casesSwitch(String cmd) {
