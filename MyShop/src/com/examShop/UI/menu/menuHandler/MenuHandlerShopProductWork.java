@@ -41,10 +41,10 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     }
 
     private void addProductInShop(Shop shop, ShopReader optionalReader) {
-        for (String initData : optionalReader.someRead()) {
+        for (String initData : optionalReader.someRead(4)) {
             try {
                 if (!shop.addProductInShop((FabricControl.getRequiredFabric(Product.class)).getSomeObject(initData))) {
-                    errLogicMsg(initData);
+                    System.out.println(("Add fail, wrong data - " + initData));
                 }
             } catch (ProductWrongInitDataException e) {
                 System.err.println(" Add fail!");
@@ -55,13 +55,13 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     }
 
     private void deleteProductInShop(Shop shop, ShopReader optionalReader) {
-        for (String initData : optionalReader.someRead()) {
+        for (String initData : optionalReader.someRead(1)) {
             try {
                 if (!shop.deleteProductInShop(Integer.parseInt(initData))) {
-                    errLogicMsg(initData);
+                    System.out.println("Delete fail, wrong data - " + initData);
                     continue;
                 }
-                shop.removeProductFromWarehouse(shop.getProduct(Integer.parseInt(initData)));
+                shop.removeProductFromWarehouse(Integer.parseInt(initData));
             } catch (NumberFormatException e) {
                 System.err.println(" Wrong info.");
             }
@@ -70,10 +70,10 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     }
 
     private void editProductInShop(Shop shop, ShopReader optionalReader) {
-        for (String initData : optionalReader.someRead()) {
+        for (String initData : optionalReader.someRead(4)) {
             try {
                 if (!shop.editProductInShop(FabricControl.getRequiredFabric(Product.class).getSomeObject(initData))) {
-                    errLogicMsg(initData);
+                    System.out.println("Edit fail, wrong data - " + initData);
                 }
             } catch (ProductWrongInitDataException e) {
                 System.err.println(" Edit fail!");

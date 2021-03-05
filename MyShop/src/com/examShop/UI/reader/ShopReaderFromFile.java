@@ -1,6 +1,8 @@
 package com.examShop.UI.reader;
 
 
+import com.examShop.exceptions.WrongInitDataException;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShopReaderFromFile implements ShopReader {
-    public List<String> someRead() {
+    public List<String> someRead(int dataCount) {
         System.out.println("-Insert path to file-");
         Scanner consoleScanner = new Scanner(System.in);
         List<String> data = new LinkedList<>();
@@ -23,7 +25,13 @@ public class ShopReaderFromFile implements ShopReader {
         }
         fileScanner.useDelimiter(System.getProperty("line.separator"));
         while (fileScanner.hasNext()) {
-            data.add(fileScanner.next());
+            String tmp = fileScanner.next();
+            String[] formattedData = tmp.split("\\W+");
+            if (formattedData.length != dataCount) {
+                System.out.println("Wrong data");
+                continue;
+            }
+            data.add(tmp);
         }
         fileScanner.close();
         return data;

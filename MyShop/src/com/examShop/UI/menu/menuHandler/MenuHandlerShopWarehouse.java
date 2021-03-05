@@ -36,7 +36,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
 
     private void addProductsToWarehouse(Shop shop, ShopReader optionalReader) {
         try {
-            for (String initData : optionalReader.someRead()) {
+            for (String initData : optionalReader.someRead(2)) {
                 String[] formattedData = initData.split("\\W+");
                 if (formattedData.length != 2) {
                     throw new WarehouseWrongInitDataException(initData);
@@ -54,7 +54,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
         int quantity = 0;
         int money = 0;
         try {
-            for (String initData : optionalReader.someRead()) {
+            for (String initData : optionalReader.someRead(2)) {
                 String[] formattedData = initData.split("\\W+");
                 if (formattedData.length != 2) {
                     throw new WarehouseWrongInitDataException(initData);

@@ -27,8 +27,9 @@ public class Shop {
     }
 
     public boolean deleteProductInShop(int id) {
+        boolean check = checkProduct(id);
         products.remove(id);
-        return checkProduct(id);
+        return check;
     }
 
     public boolean editProductInShop(Product product) {
@@ -50,8 +51,8 @@ public class Shop {
         warehouse.addProduct(product.getID(), count);
     }
 
-    public void removeProductFromWarehouse(Product product) {
-        warehouse.removeProduct(product.getID());
+    public void removeProductFromWarehouse(int id) {
+        warehouse.removeProduct(id);
     }
 
     public boolean buyProductFromWarehouse(Product product, int count) {

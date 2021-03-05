@@ -29,7 +29,4 @@ public abstract class MenuHandler {
         this.optionalReader = optionalReader;
     }
 
-    void errLogicMsg(String string) {
-        System.err.println("Err: \"" + string + "\"");
-    }
 }

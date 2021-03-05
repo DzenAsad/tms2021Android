@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface ShopReader {
 
-    List<String> someRead();
+    List<String> someRead(int dataCount);
 }
