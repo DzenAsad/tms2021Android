@@ -2,6 +2,7 @@ package com.examShop.UI.menu.menuHandler;
 
 import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.reader.ShopReader;
+import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
 public class MenuHandlerBookkeeping extends MenuHandler {
@@ -13,6 +14,8 @@ public class MenuHandlerBookkeeping extends MenuHandler {
     public MenuCase casesSwitch(String cmd) {
         switch (cmd) {
             case ("1"): {
+                showCountOfAllTypes(getShop());
+                return MenuCase.MENU_BOOKKEEPING;
             }
             case ("2"): {
             }
@@ -27,6 +30,10 @@ public class MenuHandlerBookkeeping extends MenuHandler {
                 return MenuCase.MENU_BOOKKEEPING;
             }
         }
+    }
+
+    private void showCountOfAllTypes(Shop shop) {
+        System.out.println("Shop have " + shop.getCountProductsTypeInShop() + " types");
     }
 }
 
