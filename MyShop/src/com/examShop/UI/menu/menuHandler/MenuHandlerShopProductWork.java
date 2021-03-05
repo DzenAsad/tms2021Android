@@ -7,7 +7,7 @@ import com.examShop.fabric.FabricControl;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
-import java.io.IOException;
+
 
 public class MenuHandlerShopProductWork extends MenuHandler {
     public MenuHandlerShopProductWork() {
@@ -42,46 +42,44 @@ public class MenuHandlerShopProductWork extends MenuHandler {
     }
 
     private void addProductInShop(Shop shop, ShopReader optionalReader) {
-        try {
-            for (String initData : optionalReader.someRead()) {
-                if (!shop.addProductInShop((FabricControl.getRequiredFabric(Product.class)).getSomeObject(initData))){
+        for (String initData : optionalReader.someRead()) {
+            try {
+                if (!shop.addProductInShop((FabricControl.getRequiredFabric(Product.class)).getSomeObject(initData))) {
                     errLogicMsg(initData);
                 }
+            } catch (ProductWrongInitDataException e) {
+                System.err.println(" Add fail!");
             }
-        } catch (IOException e) {
-            System.err.println("No info entered");
-        } catch (ProductWrongInitDataException e) {
-            System.err.println(" Add fail!");
         }
+
+
     }
 
     private void deleteProductInShop(Shop shop, ShopReader optionalReader) {
-        try {
-            for (String initData : optionalReader.someRead()) {
-                if (!shop.deleteProductInShop(Integer.parseInt(initData))){
+        for (String initData : optionalReader.someRead()) {
+            try {
+                if (!shop.deleteProductInShop(Integer.parseInt(initData))) {
                     errLogicMsg(initData);
                     continue;
                 }
                 shop.removeProductFromWarehouse(shop.getProduct(Integer.parseInt(initData)));
+            } catch (NumberFormatException e) {
+                System.err.println("Wrong info.");
             }
-        } catch (IOException e) {
-            System.err.println("No info entered");
-        } catch (NumberFormatException e) {
-        System.err.println("Wrong info.");
-    }
+        }
+
     }
 
     private void editProductInShop(Shop shop, ShopReader optionalReader) {
-        try {
-            for (String initData : optionalReader.someRead()) {
-                if (!shop.editProductInShop(FabricControl.getRequiredFabric(Product.class).getSomeObject(initData))){
+        for (String initData : optionalReader.someRead()) {
+            try {
+                if (!shop.editProductInShop(FabricControl.getRequiredFabric(Product.class).getSomeObject(initData))) {
                     errLogicMsg(initData);
                 }
+            } catch (ProductWrongInitDataException e) {
+                System.err.println(" Edit fail!");
             }
-        } catch (IOException e) {
-            System.err.println("No info entered");
-        } catch (ProductWrongInitDataException e) {
-            System.err.println(" Edit fail!");
         }
+
     }
 }

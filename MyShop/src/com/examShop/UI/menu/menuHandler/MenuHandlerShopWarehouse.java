@@ -48,8 +48,6 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
                 int count = Integer.parseInt(formattedData[1]);
                 shop.addProductInWarehouse(product, count);
             }
-        } catch (IOException e) {
-            System.err.println("No info entered");
         } catch (WarehouseWrongInitDataException | ShopNullProductException e) {
             System.err.println(" Add product fail!");
         }
@@ -71,8 +69,6 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
                     money += count * product.getPrice();
                 }
             }
-        } catch (IOException e) {
-            System.err.println("No info entered");
         } catch (WarehouseWrongInitDataException | ShopNullProductException e) {
             System.err.println(" Buy product fail!");
         }
