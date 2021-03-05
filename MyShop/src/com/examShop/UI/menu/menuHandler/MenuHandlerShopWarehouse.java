@@ -38,15 +38,14 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
         try {
             for (String initData : optionalReader.someRead(2)) {
                 String[] formattedData = initData.split("\\W+");
-                if (formattedData.length != 2) {
-                    throw new WarehouseWrongInitDataException(initData);
-                }
                 Product product = shop.getProduct(Integer.parseInt(formattedData[0]));
                 int count = Integer.parseInt(formattedData[1]);
                 shop.addProductInWarehouse(product, count);
             }
         } catch (WarehouseWrongInitDataException | ShopNullProductException e) {
             System.err.println(" Add product fail!");
+        } catch (NumberFormatException e){
+            System.err.println("Wrong input!");
         }
     }
 
@@ -56,9 +55,6 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
         try {
             for (String initData : optionalReader.someRead(2)) {
                 String[] formattedData = initData.split("\\W+");
-                if (formattedData.length != 2) {
-                    throw new WarehouseWrongInitDataException(initData);
-                }
                 Product product = shop.getProduct(Integer.parseInt(formattedData[0]));
                 int count = Integer.parseInt(formattedData[1]);
                 if (shop.buyProductFromWarehouse(product, count)) {
@@ -68,6 +64,8 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
             }
         } catch (WarehouseWrongInitDataException | ShopNullProductException e) {
             System.err.println(" Buy product fail!");
+        } catch (NumberFormatException e){
+            System.err.println("Wrong input!");
         }
         return "Bought:" + quantity + " Money:" + money;
     }
