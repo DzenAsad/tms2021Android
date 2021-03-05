@@ -64,7 +64,7 @@ public class MenuHandlerShopProductWork extends MenuHandler {
                 }
                 shop.removeProductFromWarehouse(shop.getProduct(Integer.parseInt(initData)));
             } catch (NumberFormatException e) {
-                System.err.println("Wrong info.");
+                System.err.println(" Wrong info.");
             }
         }
 

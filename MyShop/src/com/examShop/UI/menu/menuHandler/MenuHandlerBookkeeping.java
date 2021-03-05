@@ -1,6 +1,7 @@
 package com.examShop.UI.menu.menuHandler;
 
 import com.examShop.UI.menu.MenuCase;
+import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
 public class MenuHandlerBookkeeping extends MenuHandler {
@@ -35,15 +36,23 @@ public class MenuHandlerBookkeeping extends MenuHandler {
     }
 
     private void showCountOfAllTypes(Shop shop) {
-        System.out.println("Shop have " + shop.getCountProductsTypeInShop() + " types");
+        System.out.println("Shop have " + shop.getProductsTypeInShop().size() + " types");
     }
 
     private void showCountOfAllProducts(Shop shop) {
-        System.out.println("Shop have " + shop.getCountProductsInShop() + " products");
+        System.out.println("Shop have " + shop.getAllProductsInShop().size() + " products");
     }
 
     private void showAverageCostOfProducts(Shop shop){
-        System.out.println("Average cost of all Products " + shop.getAveragedCostProducts());
+        int tmp = 0;
+        for (Product product : shop.getAllProductsInShop()) {
+            tmp += product.getPrice();
+        }
+        tmp = tmp / shop.getAllProductsInShop().size();
+
+        System.out.println("Average cost of all Products " + tmp);
     }
+
+
 }
 

@@ -68,24 +68,18 @@ public class Shop {
         return warehouse.getCount(product);
     }
 
-    public int getCountProductsInShop() {
-        return products.size();
-    }
 
-    public int getCountProductsTypeInShop() {
+    public Set<String> getProductsTypeInShop() {
         Set<String> tmp = new HashSet<>();
         for (Product product : products.values()) {
             tmp.add(product.getType());
         }
-        return tmp.size();
+        return tmp;
     }
 
-    public int getAveragedCostProducts() {
-        int tmp = 0;
-        for (Product product : products.values()) {
-            tmp += product.getPrice();
-        }
-        return tmp / products.size();
+
+    public int getAveragedCostProductsOfProducts(){
+
     }
 
 
