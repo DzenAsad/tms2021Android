@@ -7,9 +7,6 @@ import com.examShop.exceptions.Warehouse.WarehouseWrongInitDataException;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
-import java.io.IOException;
-import java.util.List;
-
 public class MenuHandlerShopWarehouse extends MenuHandler {
     public MenuHandlerShopWarehouse() {
     }

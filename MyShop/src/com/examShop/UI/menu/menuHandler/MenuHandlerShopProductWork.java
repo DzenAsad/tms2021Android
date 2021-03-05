@@ -8,7 +8,6 @@ import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
 
-
 public class MenuHandlerShopProductWork extends MenuHandler {
     public MenuHandlerShopProductWork() {
     }

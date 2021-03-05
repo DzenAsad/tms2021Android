@@ -1,41 +1,39 @@
 package com.examShop.model.warehouse;
 
-import com.examShop.model.product.Product;
-
 import java.util.HashMap;
 
 public class Warehouse {
     private final HashMap<Integer, Integer> stock = new HashMap<>();
 
-    public void addProduct(Product product, int count) {
-        if (checkWarehouse(product.getID())) {
+    public void addProduct(int product, int count) {
+        if (checkWarehouse(product)) {
             editProductCount(product, count);
         } else {
-            stock.put(product.getID(), count);
+            stock.put(product, count);
         }
     }
 
-    public void removeProduct(Product product) {
-        stock.remove(product.getID());
+    public void removeProduct(int product) {
+        stock.remove(product);
     }
 
-    public boolean editProductCount(Product product, int count) {
-        int curCount = stock.get(product.getID());
+    public boolean editProductCount(int product, int count) {
+        int curCount = stock.get(product);
         if (curCount + count >= 0) {
-            stock.put(product.getID(), curCount + count);
+            stock.put(product, curCount + count);
             return true;
         }
         return false;
     }
 
-    public int getCount(Product product) {
-        if (stock.get(product.getID()) != null) {
-            return stock.get(product.getID());
+    public int getCount(int product) {
+        if (stock.get(product) != null) {
+            return stock.get(product);
         }
         return 0;
     }
 
-    private boolean checkWarehouse(int id){
+    private boolean checkWarehouse(int id) {
         return stock.containsKey(id);
     }
 }

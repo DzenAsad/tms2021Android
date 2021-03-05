@@ -47,16 +47,16 @@ public class Shop {
     }
 
     public void addProductInWarehouse(Product product, int count) {
-        warehouse.addProduct(product, count);
+        warehouse.addProduct(product.getID(), count);
     }
 
     public void removeProductFromWarehouse(Product product) {
-        warehouse.removeProduct(product);
+        warehouse.removeProduct(product.getID());
     }
 
     public boolean buyProductFromWarehouse(Product product, int count) {
         String tmp = product.toString() + " Quantity:" + count + " Money:" + count * product.getPrice();
-        if (warehouse.editProductCount(product, -count)) {
+        if (warehouse.editProductCount(product.getID(), -count)) {
             purchasesLog.add(tmp);
             return true;
         } else {
@@ -65,7 +65,7 @@ public class Shop {
     }
 
     public int getCountInWarehouse(Product product) {
-        return warehouse.getCount(product);
+        return warehouse.getCount(product.getID());
     }
 
 

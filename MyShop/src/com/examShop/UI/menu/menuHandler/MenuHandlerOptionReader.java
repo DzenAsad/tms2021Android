@@ -4,7 +4,6 @@ import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.reader.ShopReader;
 import com.examShop.fabric.FabricCase;
 import com.examShop.fabric.FabricControl;
-import com.examShop.model.shop.Shop;
 
 public class MenuHandlerOptionReader extends MenuHandler {
     public MenuHandlerOptionReader() {

@@ -1,8 +1,6 @@
 package com.examShop.UI.menu.menuHandler;
 
 import com.examShop.UI.menu.MenuCase;
-import com.examShop.UI.reader.ShopReader;
-import com.examShop.model.shop.Shop;
 
 public class MenuHandlerShop extends MenuHandler {
     public MenuHandlerShop() {
