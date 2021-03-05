@@ -4,6 +4,8 @@ import com.examShop.UI.menu.MenuCase;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
+import java.util.List;
+
 public class MenuHandlerBookkeeping extends MenuHandler {
     public MenuHandlerBookkeeping() {
     }
@@ -25,6 +27,8 @@ public class MenuHandlerBookkeeping extends MenuHandler {
                 return MenuCase.MENU_BOOKKEEPING;
             }
             case ("4"): {
+                showAverageCostOfProductsByType(getShop());
+                return MenuCase.MENU_BOOKKEEPING;
             }
             case ("0"): {
                 return MenuCase.MENU_MAIN;
@@ -44,15 +48,28 @@ public class MenuHandlerBookkeeping extends MenuHandler {
     }
 
     private void showAverageCostOfProducts(Shop shop){
+        List<Product> tmpList = shop.getAllProductsInShop();
         int tmp = 0;
-        for (Product product : shop.getAllProductsInShop()) {
+        for (Product product : tmpList) {
             tmp += product.getPrice();
         }
-        tmp = tmp / shop.getAllProductsInShop().size();
+        tmp = tmp / tmpList.size();
 
         System.out.println("Average cost of all Products " + tmp);
     }
 
-
+    private void showAverageCostOfProductsByType(Shop shop){
+        for(String type: shop.getProductsTypeInShop()){
+            int allSum = 0;
+            int countProducts = 0;
+            for(Product product: shop.getAllProductsInShop()){
+                if(type.equals(product.getType())){
+                    allSum += product.getPrice();
+                    countProducts++;
+                }
+            }
+            System.out.println("Average price for " + type + " is " + allSum/countProducts);
+        }
+    }
 }
 

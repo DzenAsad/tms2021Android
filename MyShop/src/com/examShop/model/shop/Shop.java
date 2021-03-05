@@ -78,11 +78,6 @@ public class Shop {
     }
 
 
-    public int getAveragedCostProductsOfProducts(){
-
-    }
-
-
     private boolean checkProduct(int id) {
         return products.containsKey(id);
     }
