@@ -43,7 +43,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
             }
         } catch (ShopNullProductException e) {
             System.err.println(" Add product fail!");
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.err.println("Wrong input!");
         }
     }
@@ -63,7 +63,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
             }
         } catch (ShopNullProductException e) {
             System.err.println(" Buy product fail!");
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.err.println("Wrong input!");
         }
         return "Bought:" + quantity + " Money:" + money;

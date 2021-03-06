@@ -1,8 +1,6 @@
 package com.examShop.UI.reader;
 
 
-import com.examShop.exceptions.WrongInitDataException;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
