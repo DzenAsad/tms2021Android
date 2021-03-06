@@ -5,12 +5,14 @@ import java.util.HashMap;
 public class Warehouse {
     private final HashMap<Integer, Integer> stock = new HashMap<>();
 
-    public void addProduct(int product, int count) {
-        if (checkWarehouse(product)) {
+    public boolean addProduct(int product, int count) {
+        boolean flag = checkWarehouse(product);
+        if (flag) {
             editProductCount(product, count);
         } else {
             stock.put(product, count);
         }
+        return flag;
     }
 
     public void removeProduct(int product) {

@@ -3,7 +3,6 @@ package com.examShop.UI.menu.menuHandler;
 import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.reader.ShopReader;
 import com.examShop.exceptions.Shop.ShopNullProductException;
-import com.examShop.exceptions.Warehouse.WarehouseWrongInitDataException;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
@@ -42,7 +41,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
                 int count = Integer.parseInt(formattedData[1]);
                 shop.addProductInWarehouse(product, count);
             }
-        } catch (WarehouseWrongInitDataException | ShopNullProductException e) {
+        } catch (ShopNullProductException e) {
             System.err.println(" Add product fail!");
         } catch (NumberFormatException e){
             System.err.println("Wrong input!");
@@ -62,7 +61,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
                     money += count * product.getPrice();
                 }
             }
-        } catch (WarehouseWrongInitDataException | ShopNullProductException e) {
+        } catch (ShopNullProductException e) {
             System.err.println(" Buy product fail!");
         } catch (NumberFormatException e){
             System.err.println("Wrong input!");

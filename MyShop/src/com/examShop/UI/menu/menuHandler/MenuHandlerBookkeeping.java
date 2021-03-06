@@ -49,18 +49,18 @@ public class MenuHandlerBookkeeping extends MenuHandler {
 
     private void showAverageCostOfProducts(Shop shop) {
         List<Product> tmpList = shop.getAllProductsInShop();
-        int tmp = 0;
+        double tmp = 0;
         for (Product product : tmpList) {
             tmp += product.getPrice();
         }
         tmp = tmp / tmpList.size();
 
-        System.out.println("Average cost of all Products " + tmp);
+        System.out.println("Average cost of all Products " + String.format("%(.2f", tmp));
     }
 
     private void showAverageCostOfProductsByType(Shop shop) {
         for (String type : shop.getProductsTypeInShop()) {
-            int allSum = 0;
+            double allSum = 0;
             int countProducts = 0;
             for (Product product : shop.getAllProductsInShop()) {
                 if (type.equals(product.getType())) {
@@ -68,7 +68,7 @@ public class MenuHandlerBookkeeping extends MenuHandler {
                     countProducts++;
                 }
             }
-            System.out.println("Average price for " + type + " is " + allSum / countProducts);
+            System.out.println("Average price for " + type + " is " + String.format("%(.2f", allSum / countProducts));
         }
     }
 }

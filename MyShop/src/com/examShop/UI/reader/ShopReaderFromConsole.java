@@ -1,7 +1,5 @@
 package com.examShop.UI.reader;
 
-import com.examShop.exceptions.Warehouse.WarehouseWrongInitDataException;
-import com.examShop.exceptions.WrongInitDataException;
 
 import java.util.LinkedList;
 import java.util.List;

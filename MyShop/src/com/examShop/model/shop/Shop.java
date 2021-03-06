@@ -47,8 +47,8 @@ public class Shop {
         return products.get(id);
     }
 
-    public void addProductInWarehouse(Product product, int count) {
-        warehouse.addProduct(product.getID(), count);
+    public boolean addProductInWarehouse(Product product, int count) {
+        return warehouse.addProduct(product.getID(), count);
     }
 
     public void removeProductFromWarehouse(int id) {
