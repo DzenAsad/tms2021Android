@@ -1,35 +1,39 @@
 package com.homeShop;
 
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Cashier {
     private final String name;
-    private int countQueue = 0;
-    private Object isWork = new Object();
+    private final Queue<Costumer> queue= new LinkedList<>();
 
     public Cashier(String name) {
         this.name = name;
     }
 
-    public void serveCostumer(Costumer costumer) {
-        increaseCountQueue();
+    public String getName() {
+        return name;
+    }
 
-        synchronized (isWork){
-            System.out.println("Cashier " + name);
-            costumer.run();
-        }
-        synchronized (name) {
-            countQueue--;
+    public void serve(Costumer costumer){
+        synchronized (queue) {
+            costumer.buy();
+            queue.remove();
         }
     }
 
-    public void increaseCountQueue() {
-        synchronized (name) {
-            countQueue++;
+    public Costumer iAmFirst() {
+        synchronized (queue) {
+            return queue.peek();
         }
     }
 
-    public int getCountQueue() {
-        return countQueue;
+    public void getInLine(Costumer costumer) {
+        queue.add(costumer);
+    }
+
+    public int getQueueCount(){
+        return queue.size();
     }
 }
 

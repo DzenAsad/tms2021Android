@@ -1,35 +1,56 @@
 package com.homeShop;
 
-import java.util.LinkedList;
+
 import java.util.List;
+import java.util.Random;
 
 public class Costumer extends Thread{
-    private final String nameCostumer;
-    List<String> shoppingList = new LinkedList<>();
+    List<String> purchases;
+    Cashier cashier;
+    Shop shop;
 
-    public Costumer(String nameCostumer) {
-        this.nameCostumer = nameCostumer;
+    public Costumer(String name) {
+        super(name);
     }
 
-    public void addShoppingList(String product) {
-        shoppingList.add(product);
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 
-    public String getNameCostumer() {
-        return nameCostumer;
+    public Cashier choiceCashier(List<Cashier> cashiers){
+//        Cashier tmp = cashiers.get(0);
+//        int count = 0;
+//        for (Cashier cashier: cashiers){
+//            if (cashier.getQueueCount() < count){
+//                count = cashier.getQueueCount();
+//                tmp = cashier;
+//            }
+//        }
+//        return tmp;
+
+        Random random = new Random();
+        return cashiers.get(random.nextInt(cashiers.size()));
     }
 
-    public List<String> getShoppingList() {
-        return shoppingList;
-    }
-
-
-    @Override
-    public void run() {
-        for (String str:  shoppingList){
-            System.out.println(nameCostumer + ": " + str);
+    public void buy(){
+        for (String string: purchases){
+            System.out.println(getName() + " buy " + string + " in " + cashier.getName());
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    @Override
+    public void run() {
+        purchases = shop.getPurchases();
+        cashier = choiceCashier(shop.getCashiers());
+        cashier.getInLine(this);
+        while (this == cashier.iAmFirst()) {
+            cashier.serve(this);
+        }
 
+    }
 }
