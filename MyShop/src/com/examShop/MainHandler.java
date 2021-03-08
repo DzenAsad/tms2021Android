@@ -13,11 +13,11 @@ import java.util.Scanner;
 
 public class MainHandler {
 
+    public static ShopReader optionalReader;
     private final Scanner scanner = new Scanner(System.in);
     private final MenuHUD menuHUD;
-    private MenuCase menuCase;
-    public static ShopReader optionalReader;
     private final Shop shop;
+    private MenuCase menuCase;
 
     {
         menuHUD = FabricControl.getRequiredFabric(MenuHUD.class).getSomeObject(FabricCase.MENU_HUD_CONSOLE.toString());

@@ -35,7 +35,7 @@ public class MenuHandlerShopProductShow extends MenuHandler {
         }
     }
 
-    private void showProducts(Shop shop, List<Product> list){
+    private void showProducts(Shop shop, List<Product> list) {
         for (Product product : list) {
             System.out.println(product.toString() + " In warehouse:" + shop.getCountInWarehouse(product));
         }

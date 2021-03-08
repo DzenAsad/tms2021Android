@@ -1,10 +1,8 @@
 package com.examShop.UI.menu.menuHandler;
 
 import com.examShop.UI.menu.MenuCase;
-import com.examShop.UI.reader.ShopReader;
-import com.examShop.exceptions.Shop.ShopNullProductException;
-import com.examShop.model.product.Product;
-import com.examShop.model.shop.Shop;
+import com.examShop.UI.menu.menuHandler.handler.ShopHandlerAddProductsToWarehouse;
+import com.examShop.UI.menu.menuHandler.handler.ShopHandlerBuyProductsFromWarehouse;
 
 public class MenuHandlerShopWarehouse extends MenuHandler {
     public MenuHandlerShopWarehouse() {
@@ -16,12 +14,12 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
         switch (command) {
             case ("1"): {
                 System.out.println("Enter info \"id_count\"");
-                addProductsToWarehouse(getShop(), getOptionalReader());
+                cycleHandler(new ShopHandlerAddProductsToWarehouse());
                 return MenuCase.MENU_SHOP_WAREHOUSE;
             }
             case ("2"): {
                 System.out.println("Enter info \"id_count\"");
-                buyProductsFromWarehouse(getShop(), getOptionalReader());
+                cycleHandler(new ShopHandlerBuyProductsFromWarehouse());
                 return MenuCase.MENU_SHOP_WAREHOUSE;
             }
             case ("0"): {
@@ -33,41 +31,4 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
         }
     }
 
-    private void addProductsToWarehouse(Shop shop, ShopReader optionalReader) {
-        try {
-            for (String initData : optionalReader.someRead()) {
-                String[] formattedData = initData.split("\\W+");
-                Product product = shop.getProduct(Integer.parseInt(formattedData[0]));
-                int count = Integer.parseInt(formattedData[1]);
-                shop.addProductInWarehouse(product, count);
-            }
-        } catch (ShopNullProductException e) {
-            System.err.println(" Add product fail!");
-        } catch (NumberFormatException e) {
-            System.err.println("Wrong input!");
-        }
-    }
-
-    private void buyProductsFromWarehouse(Shop shop, ShopReader optionalReader) {
-        int quantity = 0;
-        int money = 0;
-        try {
-            for (String initData : optionalReader.someRead()) {
-                String[] formattedData = initData.split("\\W+");
-                Product product = shop.getProduct(Integer.parseInt(formattedData[0]));
-                int count = Integer.parseInt(formattedData[1]);
-                if (shop.buyProductFromWarehouse(product, count)) {
-                    quantity += count;
-                    money += count * product.getPrice();
-                } else {
-                    System.out.println("No requested quantity in stock ");
-                }
-            }
-        } catch (ShopNullProductException e) {
-            System.err.println(" Buy product fail!");
-        } catch (NumberFormatException e) {
-            System.err.println("Wrong input!");
-        }
-        System.out.println("Bought:" + quantity + " Money:" + money);
-    }
 }

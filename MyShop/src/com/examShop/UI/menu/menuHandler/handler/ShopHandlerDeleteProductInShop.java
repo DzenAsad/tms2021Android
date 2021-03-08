@@ -2,7 +2,7 @@ package com.examShop.UI.menu.menuHandler.handler;
 
 import com.examShop.model.shop.Shop;
 
-public class ShopHandlerDeleteProductInShop extends ShopHandler{
+public class ShopHandlerDeleteProductInShop extends ShopHandler {
     @Override
     public void workLogic(Shop shop, String initData) {
         try {

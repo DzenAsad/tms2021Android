@@ -5,7 +5,7 @@ import com.examShop.fabric.FabricControl;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
-public class ShopHandlerEditProductInShop extends ShopHandler{
+public class ShopHandlerEditProductInShop extends ShopHandler {
     @Override
     public void workLogic(Shop shop, String initData) {
         try {

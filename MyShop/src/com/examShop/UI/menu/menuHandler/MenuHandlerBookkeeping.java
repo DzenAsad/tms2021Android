@@ -2,11 +2,8 @@ package com.examShop.UI.menu.menuHandler;
 
 import com.examShop.UI.menu.MenuCase;
 import com.examShop.model.product.Product;
-import com.examShop.model.shop.Shop;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class MenuHandlerBookkeeping extends MenuHandler {
     public MenuHandlerBookkeeping() {
@@ -31,7 +28,7 @@ public class MenuHandlerBookkeeping extends MenuHandler {
             }
             case ("4"): {
                 List<Product> tmpList = getShop().getAllProductsInShop();
-                for (String string: getShop().getProductsTypeInShop()) {
+                for (String string : getShop().getProductsTypeInShop()) {
                     System.out.println("Average price for " + string + " is " + String.format("%(.2f", showAverageCostOfProductsByType(tmpList, string)));
                 }
 
@@ -55,15 +52,15 @@ public class MenuHandlerBookkeeping extends MenuHandler {
     }
 
     private double showAverageCostOfProductsByType(List<Product> tmpList, String type) {
-            double allSum = 0;
-            int countProducts = 0;
-            for (Product product : tmpList) {
-                if (type.equals(product.getType())) {
-                    allSum += product.getPrice();
-                    countProducts++;
-                }
+        double allSum = 0;
+        int countProducts = 0;
+        for (Product product : tmpList) {
+            if (type.equals(product.getType())) {
+                allSum += product.getPrice();
+                countProducts++;
             }
-            return allSum / countProducts;
+        }
+        return allSum / countProducts;
     }
 }
 
