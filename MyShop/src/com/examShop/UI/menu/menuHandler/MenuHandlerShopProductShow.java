@@ -16,11 +16,14 @@ public class MenuHandlerShopProductShow extends MenuHandler {
     public MenuCase casesSwitch(String command) {
         switch (command) {
             case ("1"): {
-                showProductsByPrice(getShop());
+                List<Product> tmpString = getShop().getAllProductsInShop();
+                tmpString.sort(Comparator.comparingInt(Product::getPrice));
+                showProducts(getShop(), tmpString);
                 return MenuCase.MENU_SHOP_PRODUCT_SHOW;
             }
             case ("2"): {
-                showProductsByAdding(getShop());
+                List<Product> tmpString = getShop().getAllProductsInShop();
+                showProducts(getShop(), tmpString);
                 return MenuCase.MENU_SHOP_PRODUCT_SHOW;
             }
             case ("0"): {
@@ -32,17 +35,10 @@ public class MenuHandlerShopProductShow extends MenuHandler {
         }
     }
 
-    private void showProductsByAdding(Shop shop) {
-        for (Product product : shop.getAllProductsInShop()) {
+    private void showProducts(Shop shop, List<Product> list){
+        for (Product product : list) {
             System.out.println(product.toString() + " In warehouse:" + shop.getCountInWarehouse(product));
         }
     }
 
-    private void showProductsByPrice(Shop shop) {
-        List<Product> tmpString = shop.getAllProductsInShop();
-        tmpString.sort(Comparator.comparingInt(Product::getPrice));
-        for (Product product : tmpString) {
-            System.out.println(product.toString() + " In warehouse:" + shop.getCountInWarehouse(product));
-        }
-    }
 }
