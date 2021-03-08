@@ -11,7 +11,7 @@ public abstract class MenuHandler {
     public MenuHandler() {
     }
 
-    abstract public MenuCase casesSwitch(String cmd);
+    abstract public MenuCase casesSwitch(String command);
 
     public Shop getShop() {
         return shop;

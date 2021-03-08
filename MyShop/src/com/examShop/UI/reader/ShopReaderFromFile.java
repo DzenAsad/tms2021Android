@@ -2,6 +2,7 @@ package com.examShop.UI.reader;
 
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
@@ -18,20 +19,20 @@ public class ShopReaderFromFile implements ShopReader {
         Scanner fileScanner = null;
         try {
             fileScanner = new Scanner(path);
-        } catch (IOException e) {
-            System.err.println("No info entered");
-        }
-        fileScanner.useDelimiter(System.getProperty("line.separator"));
-        while (fileScanner.hasNext()) {
-            String tmp = fileScanner.next();
-            String[] formattedData = tmp.split("\\W+");
-            if (formattedData.length != dataCount) {
-                System.out.println("Wrong data");
-                continue;
+            fileScanner.useDelimiter(System.getProperty("line.separator"));
+            while (fileScanner.hasNext()) {
+                String tmp = fileScanner.next();
+                String[] formattedData = tmp.split("\\W+");
+                if (formattedData.length != dataCount) {
+                    System.out.println("Wrong data");
+                    continue;
+                }
+                data.add(tmp);
             }
-            data.add(tmp);
+            fileScanner.close();
+        } catch (IOException e) {
+            System.err.println("No info read!");
         }
-        fileScanner.close();
         return data;
     }
 }

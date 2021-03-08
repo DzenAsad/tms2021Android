@@ -13,8 +13,8 @@ public class MenuHandlerShopProductShow extends MenuHandler {
 
 
     @Override
-    public MenuCase casesSwitch(String cmd) {
-        switch (cmd) {
+    public MenuCase casesSwitch(String command) {
+        switch (command) {
             case ("1"): {
                 showProductsByPrice(getShop());
                 return MenuCase.MENU_SHOP_PRODUCT_SHOW;

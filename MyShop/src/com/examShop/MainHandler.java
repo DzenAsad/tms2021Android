@@ -14,11 +14,10 @@ import java.util.Scanner;
 public class MainHandler {
 
     private final Scanner scanner = new Scanner(System.in);
-
-    private MenuHUD menuHUD;
+    private final MenuHUD menuHUD;
     private MenuCase menuCase;
-    private ShopReader optionalReader;
-    private Shop shop;
+    public static ShopReader optionalReader;
+    private final Shop shop;
 
     {
         menuHUD = FabricControl.getRequiredFabric(MenuHUD.class).getSomeObject(FabricCase.MENU_HUD_CONSOLE.toString());
@@ -37,10 +36,10 @@ public class MainHandler {
 
     }
 
-    private MenuCase menuAction(String entered_CMD) {
-        MenuHandler mh = FabricControl.getRequiredFabric(MenuHandler.class).getSomeObject(menuCase.toString());
-        mh.setOptionalReader(optionalReader);
-        mh.setShop(shop);
-        return mh.casesSwitch(entered_CMD);
+    private MenuCase menuAction(String enteredCommand) {
+        MenuHandler menuHandler = FabricControl.getRequiredFabric(MenuHandler.class).getSomeObject(menuCase.toString());
+        menuHandler.setOptionalReader(optionalReader);
+        menuHandler.setShop(shop);
+        return menuHandler.casesSwitch(enteredCommand);
     }
 }

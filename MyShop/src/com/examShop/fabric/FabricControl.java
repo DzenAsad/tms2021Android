@@ -42,6 +42,7 @@ public class FabricControl {
             return (Fabric<T>) new FabricForWarehouse();
         }
 
+
         return null;
     }
 

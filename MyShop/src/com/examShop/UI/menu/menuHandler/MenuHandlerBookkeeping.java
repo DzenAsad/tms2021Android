@@ -12,8 +12,8 @@ public class MenuHandlerBookkeeping extends MenuHandler {
 
 
     @Override
-    public MenuCase casesSwitch(String cmd) {
-        switch (cmd) {
+    public MenuCase casesSwitch(String command) {
+        switch (command) {
             case ("1"): {
                 showCountOfAllTypes(getShop());
                 return MenuCase.MENU_BOOKKEEPING;

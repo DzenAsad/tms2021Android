@@ -12,8 +12,8 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
 
 
     @Override
-    public MenuCase casesSwitch(String cmd) {
-        switch (cmd) {
+    public MenuCase casesSwitch(String command) {
+        switch (command) {
             case ("1"): {
                 System.out.println("Enter info \"id_count\"");
                 addProductsToWarehouse(getShop(), getOptionalReader());
@@ -59,6 +59,8 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
                 if (shop.buyProductFromWarehouse(product, count)) {
                     quantity += count;
                     money += count * product.getPrice();
+                } else {
+                    System.out.println("No requested quantity in stock ");
                 }
             }
         } catch (ShopNullProductException e) {

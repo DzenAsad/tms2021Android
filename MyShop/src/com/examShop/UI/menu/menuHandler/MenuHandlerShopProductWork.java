@@ -14,8 +14,8 @@ public class MenuHandlerShopProductWork extends MenuHandler {
 
 
     @Override
-    public MenuCase casesSwitch(String cmd) {
-        switch (cmd) {
+    public MenuCase casesSwitch(String command) {
+        switch (command) {
             case ("1"): {
                 System.out.println("Enter info \"id_name_type_price\"");
                 addProductInShop(getShop(), getOptionalReader());
