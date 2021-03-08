@@ -14,7 +14,7 @@ public class ShopReaderFromConsole implements ShopReader {
             String tmp = scanner.nextLine();
             String[] formattedData = tmp.split("\\W+");
             if (formattedData.length != dataCount) {
-                System.out.println("Wrong data");
+                System.out.println("Wrong number of data inputted");
                 continue;
             }
             data.add(tmp);
