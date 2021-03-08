@@ -47,9 +47,8 @@ public class Customer extends Thread {
         purchases = shop.getPurchases();
         Cashier cashier = choiceCashier(shop.getCashiers());
         cashier.getInLine(this);
-        while (this == cashier.iAmFirst()) {
-            cashier.serve(this);
-        }
+        cashier.serve();
+
 
     }
 }

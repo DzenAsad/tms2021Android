@@ -25,6 +25,8 @@ public class Shop {
     public void shopRun(){
         for (Customer customer : customers){
             customer.setShop(this);
+        }
+        for (Customer customer : customers){
             customer.start();
         }
     }

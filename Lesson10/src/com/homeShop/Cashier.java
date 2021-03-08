@@ -15,11 +15,9 @@ public class Cashier {
         return name;
     }
 
-    public void serve(Customer customer){
-        synchronized (queue) {
-            customer.buy(this);
-            queue.remove();
-        }
+    public synchronized void serve(){
+
+            queue.remove().buy(this);
     }
 
     public Customer iAmFirst() {
@@ -28,8 +26,8 @@ public class Cashier {
         }
     }
 
-    public void getInLine(Customer customer) {
-        queue.add(customer);
+    public synchronized void getInLine(Customer customer) {
+            queue.add(customer);
     }
 
     public int getQueueCount(){
