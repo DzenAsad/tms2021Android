@@ -21,7 +21,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
             }
             case ("2"): {
                 System.out.println("Enter info \"id_count\"");
-                System.out.println(buyProductsFromWarehouse(getShop(), getOptionalReader()));
+                buyProductsFromWarehouse(getShop(), getOptionalReader());
                 return MenuCase.MENU_SHOP_WAREHOUSE;
             }
             case ("0"): {
@@ -35,7 +35,7 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
 
     private void addProductsToWarehouse(Shop shop, ShopReader optionalReader) {
         try {
-            for (String initData : optionalReader.someRead(2)) {
+            for (String initData : optionalReader.someRead()) {
                 String[] formattedData = initData.split("\\W+");
                 Product product = shop.getProduct(Integer.parseInt(formattedData[0]));
                 int count = Integer.parseInt(formattedData[1]);
@@ -48,11 +48,11 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
         }
     }
 
-    private String buyProductsFromWarehouse(Shop shop, ShopReader optionalReader) {
+    private void buyProductsFromWarehouse(Shop shop, ShopReader optionalReader) {
         int quantity = 0;
         int money = 0;
         try {
-            for (String initData : optionalReader.someRead(2)) {
+            for (String initData : optionalReader.someRead()) {
                 String[] formattedData = initData.split("\\W+");
                 Product product = shop.getProduct(Integer.parseInt(formattedData[0]));
                 int count = Integer.parseInt(formattedData[1]);
@@ -68,6 +68,6 @@ public class MenuHandlerShopWarehouse extends MenuHandler {
         } catch (NumberFormatException e) {
             System.err.println("Wrong input!");
         }
-        return "Bought:" + quantity + " Money:" + money;
+        System.out.println("Bought:" + quantity + " Money:" + money);
     }
 }

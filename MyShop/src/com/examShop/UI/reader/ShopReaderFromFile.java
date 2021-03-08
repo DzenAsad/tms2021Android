@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShopReaderFromFile implements ShopReader {
-    public List<String> someRead(int dataCount) {
+    public List<String> someRead() {
         System.out.println("-Insert path to file-");
         Scanner consoleScanner = new Scanner(System.in);
         List<String> data = new LinkedList<>();
@@ -22,10 +22,6 @@ public class ShopReaderFromFile implements ShopReader {
             while (fileScanner.hasNext()) {
                 String tmp = fileScanner.next();
                 String[] formattedData = tmp.split("\\W+");
-                if (formattedData.length != dataCount) {
-                    System.out.println("Wrong data");
-                    continue;
-                }
                 data.add(tmp);
             }
             fileScanner.close();
