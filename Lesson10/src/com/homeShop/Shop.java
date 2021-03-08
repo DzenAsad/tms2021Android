@@ -4,12 +4,12 @@ package com.homeShop;
 import java.util.List;
 
 public class Shop {
-    List<Costumer> costumers;
-    List<Cashier> cashiers;
-    List<String> purchases;
+    private final List<Customer> customers;
+    private final List<Cashier> cashiers;
+    private final List<String> purchases;
 
-    public Shop(List<Costumer> costumers, List<Cashier> cashiers, List<String> purchases) {
-        this.costumers = costumers;
+    public Shop(List<Customer> customers, List<Cashier> cashiers, List<String> purchases) {
+        this.customers = customers;
         this.cashiers = cashiers;
         this.purchases = purchases;
     }
@@ -23,9 +23,9 @@ public class Shop {
     }
 
     public void shopRun(){
-        for (Costumer costumer: costumers){
-            costumer.setShop(this);
-            costumer.start();
+        for (Customer customer : customers){
+            customer.setShop(this);
+            customer.start();
         }
     }
 }

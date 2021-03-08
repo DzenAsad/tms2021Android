@@ -4,12 +4,11 @@ package com.homeShop;
 import java.util.List;
 import java.util.Random;
 
-public class Costumer extends Thread{
-    List<String> purchases;
-    Cashier cashier;
-    Shop shop;
+public class Customer extends Thread {
+    private List<String> purchases;
+    private Shop shop;
 
-    public Costumer(String name) {
+    public Customer(String name) {
         super(name);
     }
 
@@ -17,7 +16,7 @@ public class Costumer extends Thread{
         this.shop = shop;
     }
 
-    public Cashier choiceCashier(List<Cashier> cashiers){
+    public Cashier choiceCashier(List<Cashier> cashiers) {
 //        Cashier tmp = cashiers.get(0);
 //        int count = 0;
 //        for (Cashier cashier: cashiers){
@@ -32,11 +31,11 @@ public class Costumer extends Thread{
         return cashiers.get(random.nextInt(cashiers.size()));
     }
 
-    public void buy(){
-        for (String string: purchases){
+    public void buy(Cashier cashier) {
+        for (String string : purchases) {
             System.out.println(getName() + " buy " + string + " in " + cashier.getName());
             try {
-                Thread.sleep(300);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -46,7 +45,7 @@ public class Costumer extends Thread{
     @Override
     public void run() {
         purchases = shop.getPurchases();
-        cashier = choiceCashier(shop.getCashiers());
+        Cashier cashier = choiceCashier(shop.getCashiers());
         cashier.getInLine(this);
         while (this == cashier.iAmFirst()) {
             cashier.serve(this);

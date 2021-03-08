@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class Cashier {
     private final String name;
-    private final Queue<Costumer> queue= new LinkedList<>();
+    private final Queue<Customer> queue= new LinkedList<>();
 
     public Cashier(String name) {
         this.name = name;
@@ -15,21 +15,21 @@ public class Cashier {
         return name;
     }
 
-    public void serve(Costumer costumer){
+    public void serve(Customer customer){
         synchronized (queue) {
-            costumer.buy();
+            customer.buy(this);
             queue.remove();
         }
     }
 
-    public Costumer iAmFirst() {
+    public Customer iAmFirst() {
         synchronized (queue) {
             return queue.peek();
         }
     }
 
-    public void getInLine(Costumer costumer) {
-        queue.add(costumer);
+    public void getInLine(Customer customer) {
+        queue.add(customer);
     }
 
     public int getQueueCount(){

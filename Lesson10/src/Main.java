@@ -1,5 +1,5 @@
 import com.homeShop.Cashier;
-import com.homeShop.Costumer;
+import com.homeShop.Customer;
 import com.homeShop.Shop;
 
 import java.util.ArrayList;
@@ -7,15 +7,15 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Costumer> costumers = new ArrayList<>();
-        costumers.add(new Costumer("Griwa"));
-        costumers.add(new Costumer("Olya"));
-        costumers.add(new Costumer("Nina"));
-        costumers.add(new Costumer("Sveta"));
-        costumers.add(new Costumer("Rita"));
-        costumers.add(new Costumer("Sasha"));
-        costumers.add(new Costumer("Kolya"));
-        costumers.add(new Costumer("Vitya"));
+        List<Customer> customers = new ArrayList<>();
+        customers.add(new Customer("Griwa"));
+        customers.add(new Customer("Olya"));
+        customers.add(new Customer("Nina"));
+        customers.add(new Customer("Sveta"));
+        customers.add(new Customer("Rita"));
+        customers.add(new Customer("Sasha"));
+        customers.add(new Customer("Kolya"));
+        customers.add(new Customer("Vitya"));
 
 
         List<Cashier> cashiers = new ArrayList<>();
@@ -30,6 +30,6 @@ public class Main {
         purchases.add("hleb");
         purchases.add("moloko");
 
-        new Shop(costumers, cashiers, purchases).shopRun();
+        new Shop(customers, cashiers, purchases).shopRun();
     }
 }
