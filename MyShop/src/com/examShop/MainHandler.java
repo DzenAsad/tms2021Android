@@ -30,7 +30,7 @@ public class MainHandler {
 
         while (menuCase != MenuCase.EXIT) {
             menuHUD.showMenu(menuCase);
-            menuCase = menuAction(scanner.next());
+            menuCase = menuAction(scanner.nextLine());
 
         }
 
