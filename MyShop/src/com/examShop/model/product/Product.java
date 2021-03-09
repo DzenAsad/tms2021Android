@@ -1,6 +1,8 @@
 package com.examShop.model.product;
 
 
+import java.util.Objects;
+
 public class Product {
     private final int ID;
     private String name;
@@ -52,5 +54,16 @@ public class Product {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return ID == product.ID;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID);
+    }
 }

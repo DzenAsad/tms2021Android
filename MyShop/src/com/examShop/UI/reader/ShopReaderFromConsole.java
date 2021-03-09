@@ -12,7 +12,6 @@ public class ShopReaderFromConsole implements ShopReader {
         Scanner scanner = new Scanner(System.in);
         while (!scanner.hasNext("0")) {
             String tmp = scanner.nextLine();
-            String[] formattedData = tmp.split("\\W+");
             data.add(tmp);
         }
         return data;

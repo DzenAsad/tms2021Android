@@ -31,7 +31,6 @@ public class MenuHandlerBookkeeping extends MenuHandler {
                 for (String string : getShop().getProductsTypeInShop()) {
                     System.out.println("Average price for " + string + " is " + String.format("%(.2f", showAverageCostOfProductsByType(tmpList, string)));
                 }
-
                 return MenuCase.MENU_BOOKKEEPING;
             }
             case ("0"): {

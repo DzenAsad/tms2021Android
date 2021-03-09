@@ -15,13 +15,12 @@ public class ShopReaderFromFile implements ShopReader {
         List<String> data = new LinkedList<>();
         String fileName = consoleScanner.nextLine();
         Path path = Paths.get(fileName);
-        Scanner fileScanner = null;
+        Scanner fileScanner;
         try {
             fileScanner = new Scanner(path);
             fileScanner.useDelimiter(System.getProperty("line.separator"));
             while (fileScanner.hasNext()) {
                 String tmp = fileScanner.next();
-                String[] formattedData = tmp.split("\\W+");
                 data.add(tmp);
             }
             fileScanner.close();

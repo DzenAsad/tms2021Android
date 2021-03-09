@@ -1,6 +1,6 @@
 package com.examShop.UI.menu.menuHandler.handler;
 
-import com.examShop.exceptions.Shop.ShopNullProductException;
+import com.examShop.exceptions.Shop.ShopProductDoesntExistsException;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;
 
@@ -19,7 +19,7 @@ public class ShopHandlerBuyProductsFromWarehouse extends ShopHandler {
             } else {
                 System.err.println("No requested quantity in stock ");
             }
-        } catch (ShopNullProductException e) {
+        } catch (ShopProductDoesntExistsException e) {
             System.err.println(" Buy product fail!");
         } catch (NumberFormatException e) {
             System.err.println("Wrong input!");
