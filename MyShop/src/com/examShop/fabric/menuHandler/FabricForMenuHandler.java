@@ -2,6 +2,7 @@ package com.examShop.fabric.menuHandler;
 
 import com.examShop.UI.menu.MenuCase;
 import com.examShop.UI.menu.menuHandler.*;
+import com.examShop.exceptions.MyShopRuntimeException;
 import com.examShop.fabric.Fabric;
 
 public class FabricForMenuHandler implements Fabric<MenuHandler> {
@@ -30,7 +31,7 @@ public class FabricForMenuHandler implements Fabric<MenuHandler> {
                 return new MenuHandlerOptionReader();
             }
             default: {
-                throw new NullPointerException();
+                throw new MyShopRuntimeException("ALLAHAKHBAR!");
             }
         }
     }

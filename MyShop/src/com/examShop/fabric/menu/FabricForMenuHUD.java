@@ -2,6 +2,7 @@ package com.examShop.fabric.menu;
 
 import com.examShop.UI.menu.MenuHUD;
 import com.examShop.UI.menu.MenuHUD_Console;
+import com.examShop.exceptions.MyShopRuntimeException;
 import com.examShop.fabric.Fabric;
 import com.examShop.fabric.FabricCase;
 
@@ -13,7 +14,7 @@ public class FabricForMenuHUD implements Fabric<MenuHUD> {
                 return new MenuHUD_Console();
             }
             default: {
-                return null;
+                throw new MyShopRuntimeException("The end is coming... amen...");
             }
         }
     }

@@ -3,6 +3,7 @@ package com.examShop.fabric.reader;
 import com.examShop.UI.reader.ShopReader;
 import com.examShop.UI.reader.ShopReaderFromConsole;
 import com.examShop.UI.reader.ShopReaderFromFile;
+import com.examShop.exceptions.MyShopRuntimeException;
 import com.examShop.fabric.Fabric;
 import com.examShop.fabric.FabricCase;
 
@@ -18,7 +19,7 @@ public class FabricForShopReader implements Fabric<ShopReader> {
                 return new ShopReaderFromFile();
             }
             default: {
-                return null;
+                throw new MyShopRuntimeException("OOPS!");
             }
         }
     }
