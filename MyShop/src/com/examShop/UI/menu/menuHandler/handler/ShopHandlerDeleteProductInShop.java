@@ -15,12 +15,9 @@ public class ShopHandlerDeleteProductInShop extends ShopHandler {
             } else {
                 System.out.printf("Such product doesn't exist: %s\n", initData);
             }
-        }
-
-        catch (ShopProductDoesntExistsException e) {
+        } catch (ShopProductDoesntExistsException e) {
             System.err.println("  Unable to delete product in shop");
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.err.println("Entered wrong product ID");
         }
     }

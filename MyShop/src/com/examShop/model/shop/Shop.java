@@ -13,6 +13,7 @@ import java.util.*;
 
 public class Shop {
     private final LinkedHashSet<Product> products = new LinkedHashSet<>();
+    private final List<String> purchasesLog = new LinkedList<>();
     private Warehouse warehouse = null;
 
     public Shop() {
@@ -22,8 +23,6 @@ public class Shop {
             System.err.println("Warehouse creation failed");
         }
     }
-
-    private final List<String> purchasesLog = new LinkedList<>();
 
     public void addProductInShop(Product product) throws ShopProductAlreadyExistsException {
         if (productExist(product)) {

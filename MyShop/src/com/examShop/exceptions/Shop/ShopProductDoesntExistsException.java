@@ -1,7 +1,6 @@
 package com.examShop.exceptions.Shop;
 
 import com.examShop.exceptions.MyShopException;
-import com.examShop.model.product.Product;
 
 public class ShopProductDoesntExistsException extends MyShopException {
     public ShopProductDoesntExistsException() {

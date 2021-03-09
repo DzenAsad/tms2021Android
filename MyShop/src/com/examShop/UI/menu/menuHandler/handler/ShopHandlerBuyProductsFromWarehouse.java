@@ -20,9 +20,9 @@ public class ShopHandlerBuyProductsFromWarehouse extends ShopHandler {
                 System.err.println("No requested quantity in stock ");
             }
         } catch (ShopProductDoesntExistsException e) {
-            System.err.println(" Buy product fail!");
+            System.err.println("  Unable to buy product from warehouse");
         } catch (NumberFormatException e) {
-            System.err.println("Wrong input!");
+            System.err.println("Entered wrong product ID");
         }
         System.out.println("Bought:" + quantity + " Money:" + money);
     }

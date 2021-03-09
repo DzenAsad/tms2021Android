@@ -2,7 +2,6 @@ package com.examShop.UI.menu.menuHandler.handler;
 
 import com.examShop.exceptions.Shop.ShopProductAlreadyExistsException;
 import com.examShop.exceptions.data.fabric.FabricWrongInitDataException;
-import com.examShop.exceptions.data.fabric.product.ProductWrongInitDataException;
 import com.examShop.fabric.FabricControl;
 import com.examShop.model.product.Product;
 import com.examShop.model.shop.Shop;

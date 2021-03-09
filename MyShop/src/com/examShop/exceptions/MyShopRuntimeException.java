@@ -1,7 +1,5 @@
 package com.examShop.exceptions;
 
-import com.examShop.model.product.Product;
-
 public class MyShopRuntimeException extends RuntimeException {
 
     public static String messageFormat = "Critical Error Occurred:\n  %s";

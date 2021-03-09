@@ -14,9 +14,9 @@ public class ShopHandlerAddProductsToWarehouse extends ShopHandler {
             shop.addProductInWarehouse(product, count);
 
         } catch (ShopProductDoesntExistsException e) {
-            System.err.println(" Add product fail!");
+            System.err.println("  Unable to add product to warehouse");
         } catch (NumberFormatException e) {
-            System.err.println("Wrong input!");
+            System.err.println("Entered wrong product ID");
         }
     }
 }
